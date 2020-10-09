@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MercadIn</string>
+    <string name="senha">Esqueceu sua senha?</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="e_mail">E-mail</string>
+    <string name="logar">Logar</string>
+    <string name="voltar">Voltar</string>
+    <string name="frase">Criar uma conta com seu e-mail ou logue com sua rede social favorita :)</string>
+    <string name="favorita">Criar um nova conta com:</string>
+    <string name="criar">Criar</string>
+    <string name="limpar">Limpar</string>
+</resources>
