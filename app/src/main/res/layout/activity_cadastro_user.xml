@@ -62,20 +62,6 @@
         app:layout_constraintVertical_bias="0.082" />
 
     <Button
-        android:id="@+id/btnLimpar"
-        android:layout_width="141dp"
-        android:layout_height="42dp"
-        android:background="@drawable/button"
-        android:text="@string/limpar"
-        android:textColor="@color/colorBotao"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.781"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679" />
-
-    <Button
         android:id="@+id/btnCriar"
         android:layout_width="141dp"
         android:layout_height="42dp"
@@ -84,10 +70,24 @@
         android:textColor="@color/colorBotao"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679" />
+        app:layout_constraintVertical_bias="0.642" />
+
+    <Button
+        android:id="@+id/btnLimpar"
+        android:layout_width="141dp"
+        android:layout_height="42dp"
+        android:background="@drawable/button"
+        android:text="@string/limpar"
+        android:textColor="@color/colorBotao"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.837"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.642" />
 
     <ImageView
         android:id="@+id/imageUser2"
