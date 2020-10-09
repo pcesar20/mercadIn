@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText edtEmail, edtSenha;
-    Button btnLogar, btnCadastrar;
+    Button btnLogar, btnCadastrar, btnSemCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         edtSenha = findViewById(R.id.edtSenha);
         btnLogar = findViewById(R.id.btnLogar);
         btnCadastrar = findViewById(R.id.btnCadastrar);
+        btnSemCadastro = findViewById(R.id.btnSemCadastro);
 
         edtEmail.requestFocus();
 
