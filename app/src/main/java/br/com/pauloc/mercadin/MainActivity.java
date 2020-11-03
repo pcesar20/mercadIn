@@ -44,5 +44,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnSemCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
+            acessoSemCadastro.show(getSupportFragmentManager(), "Acesso sem Login");
+            }
+        });
+
     }
 }

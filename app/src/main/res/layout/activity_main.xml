@@ -7,6 +7,7 @@
     android:background="@color/colorBack"
     tools:context=".MainActivity">
 
+ 
     <Button
         android:id="@+id/btnSemCadastro"
         android:layout_width="138dp"
@@ -20,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.887" />
+        app:layout_constraintVertical_bias="0.874" />
 
     <TextView
         android:id="@+id/textEmail"
@@ -126,10 +127,10 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintHorizontal_bias="0.824"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.887" />
+        app:layout_constraintVertical_bias="0.874" />
 
     <Button
         android:id="@+id/btnLogar"
