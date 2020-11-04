@@ -23,6 +23,8 @@ public class AcessoSemCadastro extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getActivity(), "Sem login", Toast.LENGTH_LONG).show();
+                Intent i2 = new Intent(getContext(), MinhaDispensa.class);
+                startActivity(i2);
             }
         });
 
