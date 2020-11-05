@@ -11,18 +11,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class AcessoSemCadastro extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setMessage("Deseja mesmo acessar sem um login?");
 
         builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getActivity(), "Sem login", Toast.LENGTH_LONG).show();
+//                Snackbar.make(getView(), "Utilizando sem cadastro!", Snackbar.LENGTH_LONG)
+//                        .setAction("MercadIn", null).show();
                 Intent i2 = new Intent(getContext(), MinhaDispensa.class);
                 startActivity(i2);
             }

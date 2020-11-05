@@ -31,8 +31,25 @@ public class MainActivity extends AppCompatActivity {
         btnLogar.setOnClickListener(new View.OnClickListener(){
                                         @Override
                                         public void onClick(View v) {
-                                                    Snackbar.make(v, "Ainda em desenvolvimento", Snackbar.LENGTH_LONG)
+
+                                            String email = edtEmail.getText().toString();
+                                            String senha = edtSenha.getText().toString();
+                                            try {
+                                                if (email.equals("") || senha.equals("")){
+                                                    Toast toast = Toast.makeText(getApplicationContext(), "Campo obrigatório vazio", Toast.LENGTH_LONG);
+                                                    toast.show();
+                                                }
+                                                else if(email.equals("adm") && senha.equals("123")){
+                                                    Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);
+                                                    startActivity(imd);
+                                                } else{
+                                                    Snackbar.make(v, "Cadastro não encontrado", Snackbar.LENGTH_LONG)
                                                             .setAction("MercadIn", null).show();
+                                                }
+                                            } catch (Exception e){
+                                                e.printStackTrace();
+                                            }
+
 
                                         }
         }
