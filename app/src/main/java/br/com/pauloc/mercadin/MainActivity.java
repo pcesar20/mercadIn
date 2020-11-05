@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText edtEmail, edtSenha;
@@ -29,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         btnLogar.setOnClickListener(new View.OnClickListener(){
                                         @Override
                                         public void onClick(View v) {
-                                          Toast toast = Toast.makeText(getApplicationContext(), "Em desenvolvimento", Toast.LENGTH_LONG);
-                                          toast.show();
+                                                    Snackbar.make(v, "Ainda em desenvolvimento", Snackbar.LENGTH_LONG)
+                                                            .setAction("MercadIn", null).show();
+
                                         }
         }
 
