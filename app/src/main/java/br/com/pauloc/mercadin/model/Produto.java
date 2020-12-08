@@ -22,6 +22,42 @@ public class Produto implements Serializable {
 
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getValidade() {
+        return validade;
+    }
+
+    public void setValidade(String validade) {
+        this.validade = validade;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public int getQntItens() {
+        return qntItens;
+    }
+
+    public void setQntItens(int qntItens) {
+        this.qntItens = qntItens;
+    }
+
     @Override
     public String toString(){
         return descricao;

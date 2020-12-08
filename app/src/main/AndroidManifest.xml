@@ -3,17 +3,18 @@
     package="br.com.pauloc.mercadin">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:fullBackupContent="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".repositories.FormAddProduto"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +25,8 @@
         <activity
             android:name=".MinhaDispensa"
             android:label="@string/title_activity_minha_dispensa"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".CadastroUserActivity" />
-
     </application>
 
 </manifest>

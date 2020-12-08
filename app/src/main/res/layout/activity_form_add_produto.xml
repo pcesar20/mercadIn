@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".repositories.FormAddProduto"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <EditText
+            android:id="@+id/edt_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:hint="@string/descri_o_produto"
+            android:inputType="textCapSentences"
+            android:autofillHints="" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <EditText
+            android:id="@+id/edt_qntProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/qnt_produto"
+            android:inputType="textCapSentences"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_enviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="@string/enviar" />
+
+</LinearLayout>

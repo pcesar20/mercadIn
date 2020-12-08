@@ -20,4 +20,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="cad_not_found">Cadastro não encontrado</string>
+    <string name="descri_o_produto">Descrição Produto</string>
+    <string name="qnt_produto">Qnt Produto</string>
+    <string name="enviar">Enviar</string>
 </resources>

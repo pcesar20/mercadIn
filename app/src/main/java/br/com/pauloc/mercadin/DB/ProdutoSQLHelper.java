@@ -22,11 +22,11 @@ public class ProdutoSQLHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
                 "CREATE TABLE " + TABELA_PRODUTO + " (" +
-                        COLUNA_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUNA_DESCRICAO + " TEXT NOT NULL, " +
-                        COLUNA_VALOR + "REAL, " +
-                        COLUNA_VALIDADE + "TEXT, " +
-                        COLUNA_QNT + "INT)"
+                        COLUNA_VALOR + " REAL, " +
+                        COLUNA_VALIDADE + " TEXT, " +
+                        COLUNA_QNT + " INT)"
         );
     }
 

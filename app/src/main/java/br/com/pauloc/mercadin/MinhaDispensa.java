@@ -1,5 +1,6 @@
 package br.com.pauloc.mercadin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.TextView;
+
+import br.com.pauloc.mercadin.repositories.FormAddProduto;
 
 public class MinhaDispensa extends AppCompatActivity {
 
@@ -25,10 +28,18 @@ public class MinhaDispensa extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Ainda em desenvolvimento", Snackbar.LENGTH_LONG)
-                        .setAction("MercadIn", null).show();
+//                Snackbar.make(view, "Ainda em desenvolvimento", Snackbar.LENGTH_LONG)
+//                        .setAction("MercadIn", null).show();
 
+        if (view.getId() == R.id.fab){
+            Intent intent = new Intent(MinhaDispensa.this, FormAddProduto.class);
+        try{
+            startActivityForResult(intent, FormAddProduto.REQUEST_ADD);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
 
+        }
 
             }
         });
