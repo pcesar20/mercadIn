@@ -2,8 +2,12 @@ package br.com.pauloc.mercadin.repositories;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.MediaStore;
+
+import java.util.ArrayList;
 
 import br.com.pauloc.mercadin.DB.ProdutoSQLHelper;
 import br.com.pauloc.mercadin.model.Produto;
@@ -25,6 +29,10 @@ public class ProdutoRepositorio {
     public ProdutoRepositorio(Context context){
        this.context = context;
 
+    }
+
+    public void close(){
+        helper.close();
     }
 
     public long inserir(Produto produto){
@@ -74,4 +82,42 @@ public class ProdutoRepositorio {
 
         return (int) database.insert(BASEDADOS_TABELA, null, contentValues);
     }
+
+    public ArrayList<Produto> query(){
+        ArrayList<Produto> arrayList = new ArrayList<Produto>();
+
+        Cursor cursor = database.query(
+                BASEDADOS_TABELA,
+                null,
+                null,
+                null,
+                null,
+                null,
+                MediaStore.Audio.Playlists.Members._ID +" DESC",
+                null
+        );
+
+        cursor.moveToFirst();
+
+        Produto produto;
+
+        if (cursor.getCount() > 0) {
+            do {
+                produto = new Produto();
+
+                produto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members._ID)));
+                produto.setDescricao(cursor.getString(cursor.getColumnIndexOrThrow(COLUNA_DESCRICAO)));
+                produto.setQntItens(cursor.getInt(cursor.getColumnIndexOrThrow(COLUNA_QNT)));
+
+                arrayList.add(produto);
+
+                cursor.moveToNext();
+            } while (!cursor.isAfterLast());
+        }
+        cursor.close();
+
+        return arrayList;
+    }
 }
+
+

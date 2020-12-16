@@ -57,7 +57,7 @@ public class FormAddProduto extends AppCompatActivity {
                                                      edtQtd.setError("Existem erros");
                                                  }
                                                  if (!isEmpty) {
-                                                     Produto novoProduto = new Produto(descricao, null, null, qntItem);
+                                                     Produto novoProduto = new Produto();
 
                                                      novoProduto.setDescricao(descricao);
                                                      novoProduto.setQntItens(qntItem);

@@ -17,8 +17,8 @@ public class Produto implements Serializable {
         this.qntItens = qntItens;
     }
 
-    public Produto(String descricao, String validade, Double valor, int qntItens) {
-        this(0, descricao, validade, valor, qntItens);
+    public Produto() {
+
 
     }
 
@@ -32,6 +32,10 @@ public class Produto implements Serializable {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getValidade() {
