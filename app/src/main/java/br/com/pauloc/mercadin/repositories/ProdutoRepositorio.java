@@ -73,6 +73,10 @@ public class ProdutoRepositorio {
         );
     }
 
+    public int delete(int id){
+        return database.delete(TABELA_PRODUTO, _ID + " = '"+id+"'", null);
+    }
+
     public int insert(Produto produto){
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUNA_DESCRICAO, produto.getDescricao());

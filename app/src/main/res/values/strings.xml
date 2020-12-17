@@ -23,4 +23,6 @@
     <string name="descri_o_produto">Descrição Produto</string>
     <string name="qnt_produto">Qnt Produto</string>
     <string name="enviar">Enviar</string>
+    <string name="senha_s">Senha</string>
+    <string name="server_client_id">38068890811-qf5n8f8o4o6jp7rtjbekvntgp0n9h58b.apps.googleusercontent.com</string>
 </resources>

@@ -45,7 +45,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.086"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/txtVoltar"
@@ -99,7 +100,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.316"
-        app:srcCompat="@drawable/user" />
+        app:srcCompat="@drawable/user"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/textEmail2"
@@ -119,9 +121,9 @@
         android:id="@+id/textSenha2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Senha"
+        android:text="@string/senha_s"
         android:textColor="@color/colorFonte"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.239"
@@ -139,7 +141,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.462"
-        app:srcCompat="@drawable/locked" />
+        app:srcCompat="@drawable/locked"
+        android:contentDescription="TODO" />
 
     <EditText
         android:id="@+id/edtCadastroSenha"
@@ -191,5 +194,7 @@
         app:layout_constraintHorizontal_bias="0.786"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
+        app:layout_constraintVertical_bias="0.917"
+        app:srcCompat="@drawable/googlepng"
+        android:contentDescription="TODO" />
 </androidx.constraintlayout.widget.ConstraintLayout>

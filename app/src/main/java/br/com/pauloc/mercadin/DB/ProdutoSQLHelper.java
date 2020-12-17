@@ -13,10 +13,11 @@ public class ProdutoSQLHelper extends SQLiteOpenHelper {
     public static final String COLUNA_VALOR = "valor";
     public static final String COLUNA_VALIDADE = "validade";
     public static final String COLUNA_QNT = "qntItens";
-
+    
     public ProdutoSQLHelper(Context context) {
         super(context, NOME_BASEDADOS, null, VERSAO_BANCODEDADOS);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
