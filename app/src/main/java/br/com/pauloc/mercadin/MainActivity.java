@@ -20,12 +20,13 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         edtEmail = findViewById(R.id.edtEmail);
         edtSenha = findViewById(R.id.edtSenha);
         btnLogar = findViewById(R.id.btnLogar);
         btnCadastrar = findViewById(R.id.btnCadastrar);
         btnSemCadastro = findViewById(R.id.btnSemCadastro);
-
+        AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
         edtEmail.requestFocus();
 
         btnLogar.setOnClickListener(new View.OnClickListener(){
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
             AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
             acessoSemCadastro.show(getSupportFragmentManager(), "Acesso sem Login");
+
             }
         });
 
