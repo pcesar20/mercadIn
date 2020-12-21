@@ -81,22 +81,29 @@ public class MinhaDispensa extends AppCompatActivity {
 
     }
 
-    private class LoadProdutoAsync extends AsyncTask<Void, Void, ArrayList<Produto>>{
+    private class LoadProdutoAsync extends AsyncTask<Void, Void, ArrayList<Produto>> {
         @Override
         protected ArrayList<Produto> doInBackground(Void... voids) {
+            try {
+                 produtoRepositorio.query();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return produtoRepositorio.query();
         }
 
+
         @Override
-        protected void onPreExecute(){
+        protected void onPreExecute() {
             super.onPreExecute();
 
             progressBar.setVisibility(View.VISIBLE);
 
-            if (lista.size() > 0){
+            if (lista.size() > 0) {
                 lista.clear();
             }
-    }
+        }
+
 
         @Override
         protected void onPostExecute(ArrayList<Produto> produtos){

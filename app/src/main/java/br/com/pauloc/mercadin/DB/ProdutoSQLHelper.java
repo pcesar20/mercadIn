@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ProdutoSQLHelper extends SQLiteOpenHelper {
     public static final String NOME_BASEDADOS = "dbMercadin";
-    public static final int VERSAO_BANCODEDADOS = 1;
+    public static final int VERSAO_BANCODEDADOS = 3;
     public static final String TABELA_PRODUTO = "produto";
     public static final String COLUNA_ID = "_id";
     public static final String COLUNA_DESCRICAO = "descricao";
