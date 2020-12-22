@@ -46,7 +46,7 @@ public class CadastroUserActivity extends AppCompatActivity {
         btnCriar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(v.getId() == R.id.btnCriar) {
+                if (v.getId() == R.id.btnCriar) {
                     String email = edtCadastroEmail.getText().toString();
                     String senha = edtCadastroSenha.getText().toString();
                     boolean isEmpty = false;
@@ -59,31 +59,31 @@ public class CadastroUserActivity extends AppCompatActivity {
                     if (!isEmpty) {
                         Usuario novoUsuario = new Usuario();
 
-                            novoUsuario.setEmail(email);
-                            novoUsuario.setSenha(senha);
-                            novoUsuario.setLogado(true);
+                        novoUsuario.setEmail(email);
+                        novoUsuario.setSenha(senha);
+                        novoUsuario.setLogado(true);
 
-                            Intent intent = new Intent();
+                        Intent intent = new Intent();
 
-                         if (isEdit){
-                             novoUsuario.setEmail(usuario.getEmail());
-                             novoUsuario.setSenha(usuario.getSenha());
-                             novoUsuario.setLogado(usuario.isLogado());
+                        if (isEdit) {
+                            novoUsuario.setEmail(usuario.getEmail());
+                            novoUsuario.setSenha(usuario.getSenha());
+                            novoUsuario.setLogado(usuario.isLogado());
 
-                             usuarioRepositorio.update(novoUsuario);
-                             intent.putExtra(EXTRA_EMAIL, posicao);
+                            usuarioRepositorio.update(novoUsuario);
+                            intent.putExtra(EXTRA_EMAIL, posicao);
 
-                             setResult(RESULT_UPDATE, intent);
+                            setResult(RESULT_UPDATE, intent);
 
-                             finish();
-                         } else {
-                             usuarioRepositorio.inserir(novoUsuario);
+                            finish();
+                        } else {
+                            usuarioRepositorio.inserir(novoUsuario);
 
-                             setResult(RESULT_ADD);
+                            setResult(RESULT_ADD);
 
-                             finish();
-                         }
+                            finish();
                         }
+                    }
                 }
             }
         });
@@ -93,7 +93,7 @@ public class CadastroUserActivity extends AppCompatActivity {
 
         usuario = getIntent().getParcelableExtra(EXTRA_EMAIL);
 
-        if (usuario != null){
+        if (usuario != null) {
             posicao = getIntent().getIntExtra(EXTRA_SENHA, 0);
             isEdit = false;
         }
@@ -109,8 +109,8 @@ public class CadastroUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //              if(edtCadastroEmail == null && edtCadastroSenha == null){
-                  Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                  startActivity(i);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
 //              }else{
 //                  Toast toast = Toast.makeText(getApplicationContext(), "Finalize o cadastro ou limpe os campos", Toast.LENGTH_LONG);
 //                  toast.show();
@@ -121,18 +121,20 @@ public class CadastroUserActivity extends AppCompatActivity {
 
     }
 
-    public void validaUsuario(String email, String senha){
-       if (email.equals("ADM") || senha.equals("123456")){
-           Toast toast = Toast.makeText(getApplicationContext(), "E-mail ou senha invalidos", Toast.LENGTH_LONG);
+    public void validaUsuario(String email, String senha) {
+        if (email.equals("ADM") || senha.equals("123456")) {
+            Toast toast = Toast.makeText(getApplicationContext(), "E-mail ou senha invalidos", Toast.LENGTH_LONG);
             toast.show();
-       } else{
+        } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Cadastro valido", Toast.LENGTH_LONG);
             toast.show();
-       }
+        }
 
-    };
+    }
 
-    public void limparCampos(){
+    ;
+
+    public void limparCampos() {
         edtCadastroSenha.setText("");
         edtCadastroEmail.setText("");
     }

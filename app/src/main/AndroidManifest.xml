@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".repositories.FormAddProduto" />
+        <activity android:name=".FormAddProduto" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

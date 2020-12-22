@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import br.com.pauloc.mercadin.CustomOnItemClickListener;
 import br.com.pauloc.mercadin.R;
 import br.com.pauloc.mercadin.model.Produto;
-import br.com.pauloc.mercadin.repositories.FormAddProduto;
+import br.com.pauloc.mercadin.FormAddProduto;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder> {
 

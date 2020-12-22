@@ -5,23 +5,18 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import br.com.pauloc.mercadin.DB.UsuarioSQLHelper;
-import br.com.pauloc.mercadin.model.Produto;
+import br.com.pauloc.mercadin.DB.DataBaseSQLHelper;
 import br.com.pauloc.mercadin.model.Usuario;
 
 import static android.provider.BaseColumns._ID;
-import static br.com.pauloc.mercadin.DB.ProdutoSQLHelper.COLUNA_DESCRICAO;
-import static br.com.pauloc.mercadin.DB.ProdutoSQLHelper.COLUNA_QNT;
-import static br.com.pauloc.mercadin.DB.ProdutoSQLHelper.COLUNA_VALIDADE;
-import static br.com.pauloc.mercadin.DB.ProdutoSQLHelper.COLUNA_VALOR;
-import static br.com.pauloc.mercadin.DB.UsuarioSQLHelper.COLUNA_EMAIL;
-import static br.com.pauloc.mercadin.DB.UsuarioSQLHelper.COLUNA_LOGADO;
-import static br.com.pauloc.mercadin.DB.UsuarioSQLHelper.COLUNA_SENHA;
-import static br.com.pauloc.mercadin.DB.UsuarioSQLHelper.TABELA_USUARIO;
+import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_EMAIL;
+import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_LOGADO;
+import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_SENHA;
+import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.TABELA_USUARIO;
 
 public class UsuarioRepositorio {
     private static String BASEDADOS_TABELA = TABELA_USUARIO;
-    private UsuarioSQLHelper helper;
+    private DataBaseSQLHelper helper;
     private Context context;
     private SQLiteDatabase database;
 
@@ -37,7 +32,7 @@ public class UsuarioRepositorio {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUNA_EMAIL, usuario.email);
-        cv.put(UsuarioSQLHelper.COLUNA_SENHA, usuario.senha);
+        cv.put(COLUNA_SENHA, usuario.senha);
         cv.put(COLUNA_LOGADO, usuario.logado);
         long id = db.insert(TABELA_USUARIO, null, cv);
         if (id != -1){
@@ -63,7 +58,7 @@ public class UsuarioRepositorio {
     }
 
     public UsuarioRepositorio open() throws SQLException {
-        helper = new UsuarioSQLHelper(context);
+        helper = new DataBaseSQLHelper(context);
         database = helper.getWritableDatabase();
 
         return this;

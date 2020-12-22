@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import br.com.pauloc.mercadin.repositories.UsuarioRepositorio;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     EditText edtEmail, edtSenha;
     Button btnLogar, btnCadastrar, btnSemCadastro;
@@ -32,31 +32,30 @@ public class MainActivity extends AppCompatActivity{
         AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
         edtEmail.requestFocus();
 
-        btnLogar.setOnClickListener(new View.OnClickListener(){
+        btnLogar.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
 
                                             String email = edtEmail.getText().toString();
                                             String senha = edtSenha.getText().toString();
                                             try {
-                                                if (email.equals("") || senha.equals("")){
+                                                if (email.equals("") || senha.equals("")) {
                                                     Toast toast = Toast.makeText(getApplicationContext(), "Campo obrigatório vazio", Toast.LENGTH_LONG);
                                                     toast.show();
-                                                }
-                                                else if(email.equals("adm") && senha.equals("123")){
+                                                } else if (email.equals("adm") && senha.equals("123")) {
                                                     Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);
                                                     startActivity(imd);
-                                                } else{
+                                                } else {
                                                     Snackbar.make(v, "Cadastro não encontrado", Snackbar.LENGTH_LONG)
                                                             .setAction("MercadIn", null).show();
                                                 }
-                                            } catch (Exception e){
+                                            } catch (Exception e) {
                                                 e.printStackTrace();
                                             }
 
 
                                         }
-        }
+                                    }
 
         );
 
@@ -71,8 +70,8 @@ public class MainActivity extends AppCompatActivity{
         btnSemCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
-            acessoSemCadastro.show(getSupportFragmentManager(), "Acesso sem Login");
+                AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
+                acessoSemCadastro.show(getSupportFragmentManager(), "Acesso sem Login");
 
             }
         });

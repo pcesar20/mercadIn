@@ -14,14 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 import br.com.pauloc.mercadin.adapters.ProdutoAdapter;
 import br.com.pauloc.mercadin.model.Produto;
-import br.com.pauloc.mercadin.repositories.FormAddProduto;
 import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;
 
 public class MinhaDispensa extends AppCompatActivity {
@@ -58,22 +56,21 @@ public class MinhaDispensa extends AppCompatActivity {
         new LoadProdutoAsync().execute();
 
 
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Snackbar.make(view, "Ainda em desenvolvimento", Snackbar.LENGTH_LONG)
 //                        .setAction("MercadIn", null).show();
 
-        if (view.getId() == R.id.fab_add){
-            Intent intent = new Intent(MinhaDispensa.this, FormAddProduto.class);
-        try{
-            startActivityForResult(intent, FormAddProduto.REQUEST_ADD);
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+                if (view.getId() == R.id.fab_add) {
+                    Intent intent = new Intent(MinhaDispensa.this, FormAddProduto.class);
+                    try {
+                        startActivityForResult(intent, FormAddProduto.REQUEST_ADD);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-        }
+                }
 
             }
         });
@@ -85,7 +82,7 @@ public class MinhaDispensa extends AppCompatActivity {
         @Override
         protected ArrayList<Produto> doInBackground(Void... voids) {
             try {
-                 produtoRepositorio.query();
+                produtoRepositorio.query();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -106,7 +103,7 @@ public class MinhaDispensa extends AppCompatActivity {
 
 
         @Override
-        protected void onPostExecute(ArrayList<Produto> produtos){
+        protected void onPostExecute(ArrayList<Produto> produtos) {
             super.onPostExecute(produtos);
 
             progressBar.setVisibility(View.GONE);
@@ -114,7 +111,7 @@ public class MinhaDispensa extends AppCompatActivity {
             adapter.setListaProduto(lista);
             adapter.notifyDataSetChanged();
 
-            if(lista.size() == 0){
+            if (lista.size() == 0) {
                 showSnackbarMessage("Não há produtos");
             }
         }
@@ -122,11 +119,11 @@ public class MinhaDispensa extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == FormAddProduto.REQUEST_ADD){
-            if (resultCode == FormAddProduto.RESULT_ADD){
+        if (requestCode == FormAddProduto.REQUEST_ADD) {
+            if (resultCode == FormAddProduto.RESULT_ADD) {
                 new LoadProdutoAsync().execute();
 
                 showSnackbarMessage("Novo produto adicionado");
@@ -154,12 +151,12 @@ public class MinhaDispensa extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (produtoRepositorio != null){
+        if (produtoRepositorio != null) {
             produtoRepositorio.close();
         }
     }
 
-    private void showSnackbarMessage(String message){
+    private void showSnackbarMessage(String message) {
         Snackbar.make(rvProd, message, Snackbar.LENGTH_SHORT).show();
     }
 
