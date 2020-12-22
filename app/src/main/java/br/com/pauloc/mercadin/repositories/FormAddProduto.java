@@ -66,8 +66,8 @@ public class FormAddProduto extends AppCompatActivity {
 
 
                                                      if (isEdit) {
-                                                         novoProduto.setValidade(produto.getValidade());
-                                                         novoProduto.setValor(produto.getValor());
+                                                         novoProduto.setDescricao(produto.getDescricao());
+                                                         novoProduto.setQntItens(produto.getQntItens());
 
                                                          produtoRepositorio.update(novoProduto);
                                                          intent.putExtra(EXTRA_QUANTIDADE, posicao);

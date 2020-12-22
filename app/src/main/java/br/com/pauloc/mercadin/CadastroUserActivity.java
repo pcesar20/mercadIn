@@ -21,6 +21,16 @@ public class CadastroUserActivity extends AppCompatActivity {
     EditText edtCadastroEmail, edtCadastroSenha;
     Button btnCriar, btnLimpar;
     ImageView imageVoltar;
+    public static int REQUEST_ADD = 100;
+    public static int RESULT_ADD = 101;
+    public static int REQUEST_UPDATE = 200;
+    public static int RESULT_UPDATE = 201;
+    public static int RESULT_DELETE = 301;
+    public static String EXTRA_EMAIL = "extra_email";
+    public static String EXTRA_SENHA = "extra_senha";
+    private boolean isEdit = false;
+    private int posicao;
+    private Usuario usuario;
     private UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(this);
 
     @Override
@@ -47,25 +57,46 @@ public class CadastroUserActivity extends AppCompatActivity {
                         edtCadastroSenha.setError("preencha o campo");
                     }
                     if (!isEmpty) {
+                        Usuario novoUsuario = new Usuario();
 
-                        try {
-                        Usuario usuario = new Usuario(email, senha, true);
-//                        usuario.setEmail(edtCadastroEmail.getText().toString());
-//                        usuario.setSenha(edtCadastroSenha.getText().toString());
-//                        usuario.setLogado(true);
-                        usuarioRepositorio.open();
-                        usuarioRepositorio.inserir(usuario);
-                        finish();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            novoUsuario.setEmail(email);
+                            novoUsuario.setSenha(senha);
+                            novoUsuario.setLogado(true);
+
+                            Intent intent = new Intent();
+
+                         if (isEdit){
+                             novoUsuario.setEmail(usuario.getEmail());
+                             novoUsuario.setSenha(usuario.getSenha());
+                             novoUsuario.setLogado(usuario.isLogado());
+
+                             usuarioRepositorio.update(novoUsuario);
+                             intent.putExtra(EXTRA_EMAIL, posicao);
+
+                             setResult(RESULT_UPDATE, intent);
+
+                             finish();
+                         } else {
+                             usuarioRepositorio.inserir(novoUsuario);
+
+                             setResult(RESULT_ADD);
+
+                             finish();
+                         }
                         }
-
-                    }
                 }
-
-
             }
         });
+
+        usuarioRepositorio = new UsuarioRepositorio(this);
+        usuarioRepositorio.open();
+
+        usuario = getIntent().getParcelableExtra(EXTRA_EMAIL);
+
+        if (usuario != null){
+            posicao = getIntent().getIntExtra(EXTRA_SENHA, 0);
+            isEdit = false;
+        }
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override

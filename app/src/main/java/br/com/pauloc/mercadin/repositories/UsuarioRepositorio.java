@@ -5,10 +5,18 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import br.com.pauloc.mercadin.DB.ProdutoSQLHelper;
 import br.com.pauloc.mercadin.DB.UsuarioSQLHelper;
+import br.com.pauloc.mercadin.model.Produto;
 import br.com.pauloc.mercadin.model.Usuario;
 
+import static android.provider.BaseColumns._ID;
+import static br.com.pauloc.mercadin.DB.ProdutoSQLHelper.COLUNA_DESCRICAO;
+import static br.com.pauloc.mercadin.DB.ProdutoSQLHelper.COLUNA_QNT;
+import static br.com.pauloc.mercadin.DB.ProdutoSQLHelper.COLUNA_VALIDADE;
+import static br.com.pauloc.mercadin.DB.ProdutoSQLHelper.COLUNA_VALOR;
+import static br.com.pauloc.mercadin.DB.UsuarioSQLHelper.COLUNA_EMAIL;
+import static br.com.pauloc.mercadin.DB.UsuarioSQLHelper.COLUNA_LOGADO;
+import static br.com.pauloc.mercadin.DB.UsuarioSQLHelper.COLUNA_SENHA;
 import static br.com.pauloc.mercadin.DB.UsuarioSQLHelper.TABELA_USUARIO;
 
 public class UsuarioRepositorio {
@@ -28,9 +36,9 @@ public class UsuarioRepositorio {
     public long inserir(Usuario usuario){
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(UsuarioSQLHelper.COLUNA_EMAIL, usuario.email);
+        cv.put(COLUNA_EMAIL, usuario.email);
         cv.put(UsuarioSQLHelper.COLUNA_SENHA, usuario.senha);
-        cv.put(UsuarioSQLHelper.COLUNA_LOGADO, usuario.logado);
+        cv.put(COLUNA_LOGADO, usuario.logado);
         long id = db.insert(TABELA_USUARIO, null, cv);
         if (id != -1){
             usuario.id = id;
@@ -40,10 +48,25 @@ public class UsuarioRepositorio {
         return id;
     }
 
+    public int update(Usuario usuario){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUNA_EMAIL, usuario.getEmail());
+        contentValues.put(COLUNA_SENHA, usuario.getSenha());
+        contentValues.put(COLUNA_LOGADO, usuario.isLogado());
+
+        return database.update(
+                BASEDADOS_TABELA,
+                contentValues,
+                _ID + "= '" + usuario.getId() + "'",
+                null
+        );
+    }
+
     public UsuarioRepositorio open() throws SQLException {
         helper = new UsuarioSQLHelper(context);
-
         database = helper.getWritableDatabase();
+
         return this;
     }
+
 }

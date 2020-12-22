@@ -9,10 +9,8 @@ public class Usuario implements Serializable {
     public String senha;
     public boolean logado;
 
-    public Usuario(String email, String senha, boolean logado) {
-        this.email = email;
-        this.senha = senha;
-        this.logado = logado;
+    public Usuario() {
+
     }
 
     public Usuario(long id, String email, String senha, boolean logado) {

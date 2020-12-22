@@ -11,10 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import br.com.pauloc.mercadin.repositories.UsuarioRepositorio;
+
 public class MainActivity extends AppCompatActivity{
 
     EditText edtEmail, edtSenha;
     Button btnLogar, btnCadastrar, btnSemCadastro;
+    private UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,4 +80,9 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        usuarioRepositorio.open();
     }
+}
