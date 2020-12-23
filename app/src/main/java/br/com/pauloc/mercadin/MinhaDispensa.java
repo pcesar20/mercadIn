@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,6 +25,7 @@ import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;
 
 public class MinhaDispensa extends AppCompatActivity {
 
+    private String email="";
     RecyclerView rvProd;
     ProgressBar progressBar;
     FloatingActionButton fab;
@@ -55,6 +57,17 @@ public class MinhaDispensa extends AppCompatActivity {
 
         new LoadProdutoAsync().execute();
 
+        Intent it = getIntent();
+
+        if(it != null){
+            Bundle b = it.getExtras();
+
+            if(b != null){
+                email = b.getString("nome", "");
+            }
+        }
+
+        bemVindo(email);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +171,10 @@ public class MinhaDispensa extends AppCompatActivity {
 
     private void showSnackbarMessage(String message) {
         Snackbar.make(rvProd, message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    private void bemVindo(String email){
+        Toast.makeText(this, "Bem vindo, " + email, Toast.LENGTH_LONG).show();
     }
 
 

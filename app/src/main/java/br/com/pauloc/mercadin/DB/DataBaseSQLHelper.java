@@ -55,13 +55,16 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean checkUser(String email, String senha) {
+    public boolean checkUser(String email, String senha) throws SQLException{
         String[] columns = {COLUNA_USUR_ID};
         SQLiteDatabase db = getReadableDatabase();
-        String selection = COLUNA_EMAIL + "=?" + " and " + COLUNA_SENHA + "=?";
+
+        String selection = "email=? and senha=?";
         String[] selectionArgs = {email, senha};
-        Cursor cursor = db.query(TABELA_USUARIO, columns, selection, selectionArgs, null, null, null);
+
+        Cursor cursor = db.rawQuery("select * from usuario where email=? and senha=?", selectionArgs);
         int count = cursor.getCount();
+
         cursor.close();
         db.close();
 
@@ -82,5 +85,21 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return username;
+    }
+
+    public boolean getUser(String email, String senha){
+        SQLiteDatabase db = getReadableDatabase();
+        String[] selectionArgs = {email, senha};
+
+        Cursor cursor = db.rawQuery("select * from usuario where email=? and senha=?", selectionArgs);
+        int count = cursor.getCount();
+
+        cursor.close();
+        db.close();
+
+        if (count > 0)
+            return true;
+        else
+            return false;
     }
 }

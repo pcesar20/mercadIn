@@ -79,6 +79,13 @@ public class CadastroUserActivity extends AppCompatActivity {
                         } else {
                             usuarioRepositorio.inserir(novoUsuario);
 
+                            Bundle b = new Bundle();
+                            b.putString("email", novoUsuario.getEmail());
+                            b.putString("senha", novoUsuario.getSenha());
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            i.putExtras(b);
+                            startActivity(i);
+
                             setResult(RESULT_ADD);
 
                             finish();

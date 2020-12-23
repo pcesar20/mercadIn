@@ -111,4 +111,20 @@ public class UsuarioRepositorio {
         return arrayList;
     }
 
+    public boolean getUser(String email, String senha){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String[] selectionArgs = {email, senha};
+
+        Cursor cursor = db.rawQuery("select * from usuario where email=? and senha=?", selectionArgs);
+        int count = cursor.getCount();
+
+        cursor.close();
+        db.close();
+
+        if (count > 0)
+            return true;
+        else
+            return false;
+    }
+
 }

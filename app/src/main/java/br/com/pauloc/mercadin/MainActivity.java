@@ -23,10 +23,9 @@ import br.com.pauloc.mercadin.DB.DataBaseSQLHelper;
 import br.com.pauloc.mercadin.repositories.UsuarioRepositorio;
 
 public class MainActivity extends AppCompatActivity {
-
+    private String emailCad, senhaCad;
     EditText edtEmail, edtSenha;
     Button btnLogar, btnCadastrar, btnSemCadastro;
-    private UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(this);
     DataBaseSQLHelper db;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -44,8 +43,22 @@ public class MainActivity extends AppCompatActivity {
         btnSemCadastro = findViewById(R.id.btnSemCadastro);
         AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
         edtEmail.requestFocus();
-
+        final UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(this);
         mAuth = FirebaseAuth.getInstance();
+
+        Intent it = getIntent();
+
+        if(it != null){
+            Bundle b = it.getExtras();
+
+            if(b != null){
+                emailCad = b.getString("email", "");
+                senhaCad = b.getString("senha", "");
+            }
+        }
+
+        edtEmail.setText(emailCad);
+        edtSenha.setText(senhaCad);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -72,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        usuarioRepositorio.open();
+
         btnLogar.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -79,16 +94,31 @@ public class MainActivity extends AppCompatActivity {
                                             String email = edtEmail.getText().toString().trim();
                                             String senha = edtSenha.getText().toString().trim();
 
-                                            boolean res = db.checkUser(email, senha);
+                                            boolean res = usuarioRepositorio.getUser(email, senha);
 
-                                            if (res == true) {
-                                                Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);
-                                                startActivity(imd);
+                                            try {
+                                                if (res == true) {
+                                                    try {
 
-                                            } else {
-                                                Snackbar.make(v, "Cadastro não encontrado", Snackbar.LENGTH_LONG)
-                                                        .setAction("MercadIn", null).show();
+                                                        Bundle b = new Bundle();
+                                                        b.putString("nome", email);
+                                                        Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);
+                                                        imd.putExtras(b);
+                                                        startActivity(imd);
+
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+
+
+                                                } else {
+                                                    Snackbar.make(v, "Cadastro não encontrado", Snackbar.LENGTH_LONG)
+                                                            .setAction("MercadIn", null).show();
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
                                             }
+
 
 //                                            try {
 //                                                if (email.equals("") || senha.equals("")) {
@@ -110,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
                                     }
 
         );
+
+        usuarioRepositorio.close();
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        usuarioRepositorio.open();
+
     }
 
     @Override
