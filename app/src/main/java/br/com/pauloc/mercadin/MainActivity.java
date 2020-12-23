@@ -1,16 +1,25 @@
 package br.com.pauloc.mercadin;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import br.com.pauloc.mercadin.DB.DataBaseSQLHelper;
 import br.com.pauloc.mercadin.repositories.UsuarioRepositorio;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     EditText edtEmail, edtSenha;
     Button btnLogar, btnCadastrar, btnSemCadastro;
     private UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(this);
+    DataBaseSQLHelper db;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,26 +45,65 @@ public class MainActivity extends AppCompatActivity {
         AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
         edtEmail.requestFocus();
 
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Log.d("AUTH", "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    Log.d("AUTH", "onAuthStateChanged:signed_out");
+                }
+
+            }
+        };
+
+        mAuth.signInWithEmailAndPassword("paulocesar.araujo.ads@gmail.com", "araujo").addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (!task.isSuccessful()) {
+                    Log.w("AUTH", "Falha ao efetuar o Login: ", task.getException());
+                } else {
+                    Log.d("AUTH", "Login Efetuado com sucesso!!!");
+                }
+            }
+        });
+
         btnLogar.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
 
-                                            String email = edtEmail.getText().toString();
-                                            String senha = edtSenha.getText().toString();
-                                            try {
-                                                if (email.equals("") || senha.equals("")) {
-                                                    Toast toast = Toast.makeText(getApplicationContext(), "Campo obrigatório vazio", Toast.LENGTH_LONG);
-                                                    toast.show();
-                                                } else if (email.equals("adm") && senha.equals("123")) {
-                                                    Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);
-                                                    startActivity(imd);
-                                                } else {
-                                                    Snackbar.make(v, "Cadastro não encontrado", Snackbar.LENGTH_LONG)
-                                                            .setAction("MercadIn", null).show();
-                                                }
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
+                                            String email = edtEmail.getText().toString().trim();
+                                            String senha = edtSenha.getText().toString().trim();
+
+                                            boolean res = db.checkUser(email, senha);
+
+                                            if (res == true) {
+                                                Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);
+                                                startActivity(imd);
+
+                                            } else {
+                                                Snackbar.make(v, "Cadastro não encontrado", Snackbar.LENGTH_LONG)
+                                                        .setAction("MercadIn", null).show();
                                             }
+
+//                                            try {
+//                                                if (email.equals("") || senha.equals("")) {
+//                                                    Toast toast = Toast.makeText(getApplicationContext(), "Campo obrigatório vazio", Toast.LENGTH_LONG);
+//                                                    toast.show();
+//                                                } else if (email.equals("adm") && senha.equals("123")) {
+//                                                    Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);
+//                                                    startActivity(imd);
+//                                                } else {
+//                                                    Snackbar.make(v, "Cadastro não encontrado", Snackbar.LENGTH_LONG)
+//                                                            .setAction("MercadIn", null).show();
+//                                                }
+//                                            } catch (Exception e) {
+//                                                e.printStackTrace();
+//                                            }
 
 
                                         }
@@ -84,4 +136,20 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         usuarioRepositorio.open();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
 }

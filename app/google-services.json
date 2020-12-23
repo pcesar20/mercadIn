@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "439516243546",
+    "project_id": "mercadin-e18f8",
+    "storage_bucket": "mercadin-e18f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439516243546:android:d209aa81c49ec349289a63",
+        "android_client_info": {
+          "package_name": "br.com.pauloc.mercadin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439516243546-ctmbj15r09etionb81an652hv8h4eofl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUdE8GcF2M030ujc8Vp8cFX2bnxaIwNro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439516243546-ctmbj15r09etionb81an652hv8h4eofl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

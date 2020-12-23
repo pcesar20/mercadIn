@@ -1,6 +1,8 @@
 package br.com.pauloc.mercadin.DB;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -51,5 +53,34 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO);
 
         onCreate(db);
+    }
+
+    public boolean checkUser(String email, String senha) {
+        String[] columns = {COLUNA_USUR_ID};
+        SQLiteDatabase db = getReadableDatabase();
+        String selection = COLUNA_EMAIL + "=?" + " and " + COLUNA_SENHA + "=?";
+        String[] selectionArgs = {email, senha};
+        Cursor cursor = db.query(TABELA_USUARIO, columns, selection, selectionArgs, null, null, null);
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (count > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public String getUsername() throws SQLException {
+        String username = "";
+        Cursor cursor = this.getReadableDatabase().query(TABELA_USUARIO, new String[]{COLUNA_EMAIL}, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                username = cursor.getString(1);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return username;
     }
 }

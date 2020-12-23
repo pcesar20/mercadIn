@@ -132,8 +132,6 @@ public class CadastroUserActivity extends AppCompatActivity {
 
     }
 
-    ;
-
     public void limparCampos() {
         edtCadastroSenha.setText("");
         edtCadastroEmail.setText("");
