@@ -67,7 +67,7 @@ public class MinhaDispensa extends AppCompatActivity {
             }
         }
 
-        bemVindo(email);
+       bemVindo(email);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,12 +169,17 @@ public class MinhaDispensa extends AppCompatActivity {
         }
     }
 
+
     private void showSnackbarMessage(String message) {
         Snackbar.make(rvProd, message, Snackbar.LENGTH_SHORT).show();
     }
 
     private void bemVindo(String email){
         Toast.makeText(this, "Bem vindo, " + email, Toast.LENGTH_LONG).show();
+
+//        Snackbar.make(, "Bem vindo, " + email, Snackbar.LENGTH_LONG)
+//                .setAction("MercadIn", null).show();
+
     }
 
 

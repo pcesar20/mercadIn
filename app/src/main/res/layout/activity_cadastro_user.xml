@@ -64,31 +64,31 @@
 
     <Button
         android:id="@+id/btnCriar"
-        android:layout_width="141dp"
-        android:layout_height="42dp"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
         android:background="@drawable/button"
         android:text="@string/criar"
         android:textColor="@color/colorBotao"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintHorizontal_bias="0.224"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintVertical_bias="0.641" />
 
     <Button
         android:id="@+id/btnLimpar"
-        android:layout_width="141dp"
-        android:layout_height="42dp"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
         android:background="@drawable/button"
         android:text="@string/limpar"
         android:textColor="@color/colorBotao"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
+        app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintVertical_bias="0.641" />
 
     <ImageView
         android:id="@+id/imageUser2"
