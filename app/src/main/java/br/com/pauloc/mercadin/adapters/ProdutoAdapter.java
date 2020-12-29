@@ -74,4 +74,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     public int getItemCount() {
         return getListaProduto().size();
     }
+
+    public void removeItem(int posicao){
+        listaProduto.remove(posicao);
+        this.notifyDataSetChanged();
+    }
 }

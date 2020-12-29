@@ -7,8 +7,10 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,7 +45,7 @@ public class MinhaDispensa extends AppCompatActivity {
         rvProd = findViewById(R.id.rv_clientes);
         rvProd.setHasFixedSize(true);
         rvProd.setLayoutManager(new LinearLayoutManager(this));
-
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rvProd);
         progressBar = findViewById(R.id.progressbar);
 
         produtoRepositorio = new ProdutoRepositorio(this);
@@ -54,6 +56,7 @@ public class MinhaDispensa extends AppCompatActivity {
         adapter = new ProdutoAdapter(this);
         adapter.setListaProduto(lista);
         rvProd.setAdapter(adapter);
+
 
         new LoadProdutoAsync().execute();
 
@@ -182,5 +185,31 @@ public class MinhaDispensa extends AppCompatActivity {
 
     }
 
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
 
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            try {
+                rvProd.removeItemDecorationAt(viewHolder.getAdapterPosition());
+                lista.remove(viewHolder.getAdapterPosition());
+                adapter.setListaProduto(lista);
+                adapter.notifyDataSetChanged();
+                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                adapter.notifyItemRangeChanged(viewHolder.getAdapterPosition(), lista.size());
+
+//                lista.remove(viewHolder.getAdapterPosition());
+//                adapter.setListaProduto(lista);
+//                adapter.notifyDataSetChanged();
+
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+    };
 }
