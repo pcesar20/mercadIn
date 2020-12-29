@@ -61,14 +61,14 @@ public class CadastroUserActivity extends AppCompatActivity {
 
                         novoUsuario.setEmail(email);
                         novoUsuario.setSenha(senha);
-                        novoUsuario.setLogado(true);
+                        novoUsuario.setLogado(false);
 
                         Intent intent = new Intent();
 
                         if (isEdit) {
                             novoUsuario.setEmail(usuario.getEmail());
                             novoUsuario.setSenha(usuario.getSenha());
-                            novoUsuario.setLogado(usuario.isLogado());
+                            novoUsuario.setLogado(usuario.desLogado());
 
                             usuarioRepositorio.update(novoUsuario);
                             intent.putExtra(EXTRA_EMAIL, posicao);

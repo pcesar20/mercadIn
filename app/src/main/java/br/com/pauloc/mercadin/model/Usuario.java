@@ -45,7 +45,11 @@ public class Usuario implements Serializable {
     }
 
     public boolean isLogado() {
-        return logado;
+        return logado = true;
+    }
+
+    public boolean desLogado(){
+        return logado = false;
     }
 
     public void setLogado(boolean logado) {

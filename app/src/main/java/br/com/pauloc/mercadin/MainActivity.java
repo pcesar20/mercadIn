@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.com.pauloc.mercadin.DB.DataBaseSQLHelper;
+import br.com.pauloc.mercadin.model.Usuario;
 import br.com.pauloc.mercadin.repositories.UsuarioRepositorio;
 
 public class MainActivity extends AppCompatActivity {
@@ -93,13 +94,21 @@ public class MainActivity extends AppCompatActivity {
 
                                             String email = edtEmail.getText().toString().trim();
                                             String senha = edtSenha.getText().toString().trim();
+                                            boolean logado = true;
+
+                                            Usuario usuario = new Usuario();
+
+                                            usuario.setEmail(email);
+                                            usuario.setSenha(senha);
+                                            usuario.isLogado();
 
                                             boolean res = usuarioRepositorio.getUser(email, senha);
 
                                             try {
                                                 if (res == true) {
                                                     try {
-
+                                                        usuarioRepositorio.open();
+                                                        usuarioRepositorio.updateLogado(usuario);
                                                         Bundle b = new Bundle();
                                                         b.putString("nome", email);
                                                         Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);

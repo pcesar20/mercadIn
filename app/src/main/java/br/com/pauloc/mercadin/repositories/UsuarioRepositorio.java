@@ -64,6 +64,20 @@ public class UsuarioRepositorio {
         );
     }
 
+    public int updateLogado(Usuario usuario){
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUNA_LOGADO, usuario.isLogado());
+
+        return database.update(
+                BASEDADOS_TABELA,
+                contentValues,
+                _ID + "= '" + usuario.getId() + "'",
+                null
+        );
+
+    }
+
     public UsuarioRepositorio open() throws SQLException {
         helper = new DataBaseSQLHelper(context);
         database = helper.getWritableDatabase();
