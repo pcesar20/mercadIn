@@ -92,7 +92,7 @@ public class FormAddProduto extends AppCompatActivity {
         produtoRepositorio = new ProdutoRepositorio(this);
         produtoRepositorio.open();
 
-        produto = getIntent().getParcelableExtra(EXTRA_DESCRICAO);
+        //produto = getIntent().getParcelableExtra(EXTRA_DESCRICAO);
 
         if (produto != null) {
             posicao = getIntent().getIntExtra(EXTRA_QUANTIDADE, 0);

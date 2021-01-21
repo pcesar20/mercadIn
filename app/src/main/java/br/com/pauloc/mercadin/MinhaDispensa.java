@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -21,17 +22,18 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import br.com.pauloc.mercadin.DB.DataBaseSQLHelper;
 import br.com.pauloc.mercadin.adapters.ProdutoAdapter;
 import br.com.pauloc.mercadin.model.Produto;
 import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;
 
 public class MinhaDispensa extends AppCompatActivity {
 
-    private String email="";
+    private String email = "";
     RecyclerView rvProd;
     ProgressBar progressBar;
     FloatingActionButton fab;
-    private LinkedList<Produto> lista;
+    private ArrayList<Produto> lista;
     private ProdutoRepositorio produtoRepositorio;
     private ProdutoAdapter adapter;
 
@@ -39,19 +41,20 @@ public class MinhaDispensa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minha_dispensa);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab_add);
         rvProd = findViewById(R.id.rv_clientes);
         rvProd.setHasFixedSize(true);
         rvProd.setLayoutManager(new LinearLayoutManager(this));
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rvProd);
         progressBar = findViewById(R.id.progressbar);
+        //rvProd.scrollToPosition(0);
 
         produtoRepositorio = new ProdutoRepositorio(this);
         produtoRepositorio.open();
 
-        lista = new LinkedList<>();
+        lista = new ArrayList<>();
 
         adapter = new ProdutoAdapter(this);
         adapter.setListaProduto(lista);
@@ -62,21 +65,19 @@ public class MinhaDispensa extends AppCompatActivity {
 
         Intent it = getIntent();
 
-        if(it != null){
+        if (it != null) {
             Bundle b = it.getExtras();
 
-            if(b != null){
+            if (b != null) {
                 email = b.getString("nome", "");
             }
         }
 
-       bemVindo(email);
+        bemVindo(email);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Ainda em desenvolvimento", Snackbar.LENGTH_LONG)
-//                        .setAction("MercadIn", null).show();
 
                 if (view.getId() == R.id.fab_add) {
                     Intent intent = new Intent(MinhaDispensa.this, FormAddProduto.class);
@@ -177,7 +178,7 @@ public class MinhaDispensa extends AppCompatActivity {
         Snackbar.make(rvProd, message, Snackbar.LENGTH_SHORT).show();
     }
 
-    private void bemVindo(String email){
+    private void bemVindo(String email) {
         Toast.makeText(this, "Bem vindo, " + email, Toast.LENGTH_LONG).show();
 
 //        Snackbar.make(, "Bem vindo, " + email, Snackbar.LENGTH_LONG)
@@ -194,22 +195,45 @@ public class MinhaDispensa extends AppCompatActivity {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             try {
-                rvProd.removeItemDecorationAt(viewHolder.getAdapterPosition());
-                lista.remove(viewHolder.getAdapterPosition());
-                adapter.setListaProduto(lista);
-                adapter.notifyDataSetChanged();
-                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                adapter.notifyItemRangeChanged(viewHolder.getAdapterPosition(), lista.size());
+            Integer position = viewHolder.getAdapterPosition();
 
-//                lista.remove(viewHolder.getAdapterPosition());
-//                adapter.setListaProduto(lista);
-//                adapter.notifyDataSetChanged();
+                if(position != null){
+                    produtoRepositorio.open();
+                    lista.remove(position);
+                    produtoRepositorio.delete(position);
+                    adapter.removeItem(position);
+                    adapter.notifyItemRemoved(position);
+                    showSnackbarMessage("Produto Eliminado");
+                } else{
+                    showSnackbarMessage("Algo de errado");
+                }
 
-            }
-            catch (Exception e){
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
     };
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case 0:
+                adapter.removeItem(item.getGroupId());
+                lista.remove(item.getGroupId());
+                adapter.notifyItemRemoved(item.getItemId());
+                produtoRepositorio.open();
+                produtoRepositorio.delete(item.getItemId());
+                //lista.notify();
+                adapter.notifyDataSetChanged();
+                return true;
+            case 1:
+                Toast.makeText(this, "teste", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+
+    }
 }

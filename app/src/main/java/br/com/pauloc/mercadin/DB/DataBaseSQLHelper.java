@@ -6,9 +6,11 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static android.provider.MediaStore.Audio.Playlists.Members._ID;
+
 public class DataBaseSQLHelper extends SQLiteOpenHelper {
     public static final String NOME_BASEDADOS = "dbMercadin";
-    public static final int VERSAO_BANCODEDADOS = 7;
+    public static final int VERSAO_BANCODEDADOS = 8;
     //TABELA PRODUTO
     public static final String TABELA_PRODUTO = "produto";
     public static final String COLUNA_ID = "_id";
@@ -22,6 +24,7 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
     public static final String COLUNA_EMAIL = "email";
     public static final String COLUNA_SENHA = "senha";
     public static final String COLUNA_LOGADO = "logado";
+
 
     public DataBaseSQLHelper(Context context) {
         super(context, NOME_BASEDADOS, null, VERSAO_BANCODEDADOS);
@@ -102,6 +105,8 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
         else
             return false;
     }
+
+
 
 
 
