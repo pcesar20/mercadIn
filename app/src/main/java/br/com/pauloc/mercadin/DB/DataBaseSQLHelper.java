@@ -10,7 +10,7 @@ import static android.provider.MediaStore.Audio.Playlists.Members._ID;
 
 public class DataBaseSQLHelper extends SQLiteOpenHelper {
     public static final String NOME_BASEDADOS = "dbMercadin";
-    public static final int VERSAO_BANCODEDADOS = 8;
+    public static final int VERSAO_BANCODEDADOS = 9;
     //TABELA PRODUTO
     public static final String TABELA_PRODUTO = "produto";
     public static final String COLUNA_ID = "_id";
@@ -18,12 +18,38 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
     public static final String COLUNA_VALOR = "valor";
     public static final String COLUNA_VALIDADE = "validade";
     public static final String COLUNA_QNT = "qntItens";
+    public static final String COLUNA_PRODCAT_ID = "categoria_id";
     //TABELA USUARIO
     public static final String TABELA_USUARIO = "usuario";
     public static final String COLUNA_USUR_ID = "_id";
     public static final String COLUNA_EMAIL = "email";
     public static final String COLUNA_SENHA = "senha";
     public static final String COLUNA_LOGADO = "logado";
+    //TABELA CATEGORIA
+    public static final String TABELA_CATEGORIA = "categoria";
+    public static final String COLUNA_CAT_ID = "_id";
+    public static final String COLUNA_CAT_DESCRICAO = "cat_descricao";
+    public static final String COLUNA_PERECIVEL = "perecivel";
+    //TABELA COMPRAS
+    public static final String TABELA_COMPRAS = "compras";
+    public static final String COLUNA_COMPRAS_ID = "id";
+    public static final String COLUNA_USUARIO_ID = "usuario_id";
+    public static final String COLUNA_MES_REF = "mes_referencia";
+    public static final String COLUNA_STATUS = "status";
+    //TABELA COMPRAS ITENS
+    public static final String TABELA_COMPRAS_ITENS = "compras_itens";
+    public static final String COLUNA_CITENS_ID = "id";
+    public static final String COLUNA_COMPRA_ID = "compra_id";
+    public static final String COLUNA_USURITENS_ID = "usuario_id";
+    public static final String COLUNA_PROD_CI = "produto_id";
+    public static final String COLUNA_QTNITENS = "qntItens";
+    public static final String COLUNA_VLTOTAL = "valortotal";
+    //TABELA DISPENSA
+    public static final String TABELA_DISPENSA = "dispensa";
+    public static final String COLUNA_DISPENSA_ID = "id";
+    public static final String COLUNA_PROD_ID = "produto_id";
+    public static final String COLUNA_PROD_QNT = "produto_qnt";
+    public static final String COLUNA_PROD_VAL = "validade";
 
 
     public DataBaseSQLHelper(Context context) {
@@ -46,14 +72,60 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
                         COLUNA_DESCRICAO + " TEXT NOT NULL, " +
                         COLUNA_VALOR + " REAL, " +
                         COLUNA_VALIDADE + " TEXT, " +
-                        COLUNA_QNT + " INT)"
+                        COLUNA_PRODCAT_ID + " TEXT, " +
+                        COLUNA_QNT + " INT," +
+                        "FOREIGN KEY ("+COLUNA_PRODCAT_ID+") REFERENCES "+TABELA_CATEGORIA+"("+COLUNA_CAT_ID+"))"
         );
+
+        db.execSQL(
+                "CREATE TABLE " + TABELA_CATEGORIA + " (" +
+                        COLUNA_CAT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        COLUNA_CAT_DESCRICAO + " TEXT NOT NULL, " +
+                        COLUNA_PERECIVEL + "BOOLEAN )"
+        );
+
+        db.execSQL(
+                "CREATE TABLE " + TABELA_COMPRAS + " (" +
+                        COLUNA_COMPRAS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        COLUNA_USUARIO_ID + " TEXT NOT NULL, " +
+                        COLUNA_MES_REF + " DATE," +
+                        COLUNA_STATUS + " TEXT NOT NULL," +
+                        "FOREIGN KEY ("+COLUNA_USUARIO_ID+") REFERENCES "+TABELA_USUARIO+"("+COLUNA_USUR_ID+"))"
+        );
+
+        db.execSQL(
+                "CREATE TABLE " + TABELA_COMPRAS_ITENS + " (" +
+                        COLUNA_CITENS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        COLUNA_COMPRA_ID + " INT NOT NULL, " +
+                        COLUNA_USURITENS_ID + " INT NOT NULL," +
+                        COLUNA_PROD_CI + " INT NOT NULL, " +
+                        COLUNA_QTNITENS + " INT NOT NULL," +
+                        COLUNA_VLTOTAL + " REAL NOT NULL," +
+                        "FOREIGN KEY ("+COLUNA_PROD_CI+") REFERENCES "+TABELA_PRODUTO+"("+COLUNA_ID+")," +
+                        "FOREIGN KEY ("+COLUNA_COMPRA_ID+") REFERENCES "+TABELA_COMPRAS+"("+COLUNA_COMPRAS_ID+")," +
+                        "FOREIGN KEY ("+COLUNA_USURITENS_ID+") REFERENCES "+TABELA_USUARIO+"("+COLUNA_USUR_ID+"))"
+        );
+
+        db.execSQL(
+                "CREATE TABLE " + TABELA_DISPENSA + " (" +
+                        COLUNA_DISPENSA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        COLUNA_PROD_ID + " INT NOT NULL, " +
+                        COLUNA_PROD_QNT + " INT NOT NULL," +
+                        COLUNA_PROD_VAL + " REAL NOT NULL," +
+                        "FOREIGN KEY ("+COLUNA_PROD_ID+") REFERENCES "+TABELA_PRODUTO+"("+COLUNA_ID+"))"
+        );
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_PRODUTO);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_CATEGORIA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_COMPRAS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_COMPRAS_ITENS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_DISPENSA);
+
 
         onCreate(db);
     }
