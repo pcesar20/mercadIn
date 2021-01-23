@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                                                         usuarioRepositorio.updateLogado(usuario);
                                                         Bundle b = new Bundle();
                                                         b.putString("nome", email);
-                                                        Intent imd = new Intent(getApplicationContext(), MinhaDispensa.class);
+                                                        Intent imd = new Intent(getApplicationContext(), MenuPrincipal.class);
                                                         imd.putExtras(b);
                                                         startActivity(imd);
 

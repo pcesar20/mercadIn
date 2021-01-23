@@ -6,13 +6,18 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="MaterialTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="MaterialTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splashact</item>
+    </style>
+    <style name="TextoMenuPrincipal">
+        <item name="android:textColor">@color/cor_txt_btn_menuprincipal</item>
+        <item name="android:fontFamily">@font/santral_bold</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>

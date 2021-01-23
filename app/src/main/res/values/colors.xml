@@ -7,4 +7,7 @@
     <color name="colorFonte">#A8DADC</color>
     <color name="colorEdit">#F0F1F9</color>
     <color name="colorBotao">#37474F</color>
+    <color name="cor_txt_btn_menuprincipal">#232323</color>
+    <color name="cor_fundo_tela_card">#F1F1F1</color>
+    <color name="cor_fundo_card">#FFFFFF</color>
 </resources>

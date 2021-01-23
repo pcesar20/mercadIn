@@ -31,7 +31,7 @@ public class AcessoSemCadastro extends DialogFragment {
 //                Snackbar.make(getView(), "Utilizando sem cadastro!", Snackbar.LENGTH_LONG)
 //                        .setAction("MercadIn", null).show();
                 logado = true;
-                Intent i2 = new Intent(getContext(), MinhaDispensa.class);
+                Intent i2 = new Intent(getContext(), MenuPrincipal.class);
                 startActivity(i2);
             }
         });
