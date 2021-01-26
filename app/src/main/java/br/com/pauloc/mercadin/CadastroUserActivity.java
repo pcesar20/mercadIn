@@ -115,13 +115,13 @@ public class CadastroUserActivity extends AppCompatActivity {
         imageVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//              if(edtCadastroEmail == null && edtCadastroSenha == null){
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-//              }else{
-//                  Toast toast = Toast.makeText(getApplicationContext(), "Finalize o cadastro ou limpe os campos", Toast.LENGTH_LONG);
-//                  toast.show();
-//              }
+                String email = edtCadastroEmail.getText().toString();
+                String senha = edtCadastroSenha.getText().toString();
+                validaCampos(email, senha);
+
+               // Intent i = new Intent(getApplicationContext(), MenuPrincipal.class);
+                //startActivity(i);
+
 
             }
         });
@@ -143,4 +143,15 @@ public class CadastroUserActivity extends AppCompatActivity {
         edtCadastroSenha.setText("");
         edtCadastroEmail.setText("");
     }
+
+    public void validaCampos(String email, String senha){
+        if(!email.equals("") || !senha.equals("")){
+            Intent i = new Intent(getApplicationContext(), MenuPrincipal.class);
+            startActivity(i);
+        }else{
+            Toast toast = Toast.makeText(getApplicationContext(), "Finalize o cadastro ou limpe os campos", Toast.LENGTH_LONG);
+            toast.show();
+            btnLimpar.requestFocus();
+        }
+         }
 }

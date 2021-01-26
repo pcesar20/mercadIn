@@ -113,9 +113,14 @@ public class FormAddProduto extends AppCompatActivity {
             btnCliente = "Criar";
         }
 
-        getSupportActionBar().setTitle(actionBarTitle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        btnEnviar.setText(btnCliente);
+        try{
+            getSupportActionBar().setTitle(actionBarTitle);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            btnEnviar.setText(btnCliente);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
 
 
     }

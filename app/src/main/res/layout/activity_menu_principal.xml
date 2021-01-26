@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".MenuPrincipal">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/btnClientes"
@@ -310,37 +316,18 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="122dp"
-        android:layout_height="41dp"
+    <TextView
+        android:id="@+id/text_bemvindo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bem vindo!"
+        android:textColor="@color/cor_txt_btn_menuprincipal"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:backgroundTint="#727272"
-            android:gravity="center"
-            android:text="V.1.0.0"
-            android:textSize="18sp"
-            android:textStyle="italic"></TextView>
-
-        <ImageView
-            android:id="@+id/imgInternetConection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:backgroundTint="#727272"
-            android:paddingStart="8dp"
-            android:src="@drawable/ic_maxima_nuvem_desconectado"
-            android:paddingLeft="8dp" />
-    </LinearLayout>
-
-
-
-
-
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

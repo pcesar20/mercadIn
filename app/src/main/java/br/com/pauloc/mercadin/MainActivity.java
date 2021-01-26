@@ -1,12 +1,16 @@
 package br.com.pauloc.mercadin;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private String emailCad, senhaCad;
     EditText edtEmail, edtSenha;
     Button btnLogar, btnCadastrar, btnSemCadastro;
+    ImageView imgInternetConection;
     DataBaseSQLHelper db;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -42,10 +47,13 @@ public class MainActivity extends AppCompatActivity {
         btnLogar = findViewById(R.id.btnLogar);
         btnCadastrar = findViewById(R.id.btnCadastrar);
         btnSemCadastro = findViewById(R.id.btnSemCadastro);
+        imgInternetConection = findViewById(R.id.imgInternetConection);
         AcessoSemCadastro acessoSemCadastro = new AcessoSemCadastro();
         edtEmail.requestFocus();
         final UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(this);
         mAuth = FirebaseAuth.getInstance();
+
+        verificarConexao(this);
 
         Intent it = getIntent();
 
@@ -114,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                                                         Intent imd = new Intent(getApplicationContext(), MenuPrincipal.class);
                                                         imd.putExtras(b);
                                                         startActivity(imd);
+                                                        finish();
 
                                                     } catch (Exception e) {
                                                         e.printStackTrace();
@@ -191,6 +200,24 @@ public class MainActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    public void verificarConexao(Context context){
+        if(isConnected(context) == true){
+            imgInternetConection.setImageResource(R.drawable.ic_maxima_nuvem_conectado);
+        } else{
+            imgInternetConection.setImageResource(R.drawable.ic_maxima_nuvem_desconectado);
+        }
+    }
+
+    public static boolean isConnected(Context context){
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null){
+            NetworkInfo ni = connectivityManager.getActiveNetworkInfo();
+
+            return ni != null && ni.isConnected();
+        }
+        return false;
     }
 
 }
