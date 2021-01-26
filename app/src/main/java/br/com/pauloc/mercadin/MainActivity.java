@@ -182,9 +182,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        verificarConexao(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-
+        verificarConexao(this);
     }
 
     @Override
@@ -192,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        verificarConexao(this);
     }
 
     @Override

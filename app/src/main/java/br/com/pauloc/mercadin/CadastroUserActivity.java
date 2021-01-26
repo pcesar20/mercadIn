@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ import br.com.pauloc.mercadin.repositories.UsuarioRepositorio;
 
 public class CadastroUserActivity extends AppCompatActivity {
     EditText edtCadastroEmail, edtCadastroSenha;
+    TextView txtVoltar;
     Button btnCriar, btnLimpar;
     ImageView imageVoltar;
     public static int REQUEST_ADD = 100;
@@ -42,6 +44,7 @@ public class CadastroUserActivity extends AppCompatActivity {
         btnCriar = findViewById(R.id.btnCriar);
         btnLimpar = findViewById(R.id.btnLimpar);
         imageVoltar = findViewById(R.id.imageVoltar);
+        txtVoltar = findViewById(R.id.txtVoltar);
 
         btnCriar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,14 +118,19 @@ public class CadastroUserActivity extends AppCompatActivity {
         imageVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = edtCadastroEmail.getText().toString();
-                String senha = edtCadastroSenha.getText().toString();
-                validaCampos(email, senha);
 
-               // Intent i = new Intent(getApplicationContext(), MenuPrincipal.class);
-                //startActivity(i);
+                Intent i = new Intent(getApplicationContext(), MenuPrincipal.class);
+                startActivity(i);
 
 
+            }
+        });
+
+        txtVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MenuPrincipal.class);
+                startActivity(i);
             }
         });
 
@@ -145,7 +153,7 @@ public class CadastroUserActivity extends AppCompatActivity {
     }
 
     public void validaCampos(String email, String senha){
-        if(!email.equals("") || !senha.equals("")){
+        if(email.equals("") || senha.equals("")){
             Intent i = new Intent(getApplicationContext(), MenuPrincipal.class);
             startActivity(i);
         }else{
