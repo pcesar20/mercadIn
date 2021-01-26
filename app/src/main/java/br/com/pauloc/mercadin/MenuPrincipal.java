@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,7 +41,6 @@ public class MenuPrincipal extends AppCompatActivity {
                 email = b.getString("nome", "");
             }
         }
-
         bemVindo(email);
 
         btnCompras.setOnClickListener(new View.OnClickListener() {
@@ -98,5 +99,12 @@ public class MenuPrincipal extends AppCompatActivity {
     private void bemVindo(String email) {
         textBemVindo.setText("Bem vindo, " + email + "!");
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_item, menu);
+        return true;
     }
 }
