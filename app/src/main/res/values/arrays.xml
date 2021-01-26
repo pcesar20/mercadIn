@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_categoria">
+        <item name="padaria">Padaria</item>
+        <item name="alimentos_cereais_e_gr_os">Alimentos (cereais e grãos)</item>
+        <item name="congelados_e_frios">Congelados e frios</item>
+        <item name="hortifr_ti">Hortifrúti</item>
+        <item name="produtos_de_limpeza">Produtos de limpeza</item>
+        <item name="bebidas">Bebidas</item>
+        <item name="papelaria">Papelaria</item>
+        <item name="higiene_pessoal">Higiene pessoal</item>
+    </string-array>
+</resources>

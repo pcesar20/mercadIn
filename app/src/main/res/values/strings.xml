@@ -25,4 +25,13 @@
     <string name="enviar">Enviar</string>
     <string name="senha_s">Senha</string>
     <string name="server_client_id">38068890811-qf5n8f8o4o6jp7rtjbekvntgp0n9h58b.apps.googleusercontent.com</string>
+    <string name="marca_produto">Marca Produto</string>
+    <string name="padaria">Padaria</string>
+    <string name="alimentos_cereais_e_gr_os">Alimentos (cereais e grãos)</string>
+    <string name="congelados_e_frios">Congelados e frios</string>
+    <string name="hortifr_ti">Hortifrúti</string>
+    <string name="produtos_de_limpeza">Produtos de limpeza</string>
+    <string name="bebidas">Bebidas</string>
+    <string name="papelaria">Papelaria</string>
+    <string name="higiene_pessoal">Higiene pessoal</string>
 </resources>

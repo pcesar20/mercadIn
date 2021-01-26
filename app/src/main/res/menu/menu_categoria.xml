@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/optPadaria"
+        android:title="@string/padaria" />
+    <item android:id="@+id/optAlimentos"
+        android:title="@string/alimentos_cereais_e_gr_os" />
+    <item android:id="@+id/optFrios"
+        android:title="@string/congelados_e_frios" />
+    <item android:id="@+id/optHortifruti"
+        android:title="@string/hortifr_ti" />
+    <item android:id="@+id/optLimpeza"
+        android:title="@string/produtos_de_limpeza" />
+    <item android:id="@+id/optBebidas"
+        android:title="@string/bebidas" />
+    <item android:id="@+id/optPapelaria"
+        android:title="@string/papelaria" />
+    <item android:id="@+id/optHigiene"
+        android:title="@string/higiene_pessoal" />
+</menu>
