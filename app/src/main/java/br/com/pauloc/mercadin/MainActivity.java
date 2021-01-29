@@ -24,10 +24,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.com.pauloc.mercadin.DB.DataBaseSQLHelper;
+import br.com.pauloc.mercadin.common.ConfigSharedPreferences;
 import br.com.pauloc.mercadin.model.Usuario;
 import br.com.pauloc.mercadin.repositories.UsuarioRepositorio;
 
 public class MainActivity extends AppCompatActivity {
+    private ConfigSharedPreferences configSharedPreferences;
     private String emailCad, senhaCad;
     EditText edtEmail, edtSenha;
     Button btnLogar, btnCadastrar, btnSemCadastro;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        configSharedPreferences = new ConfigSharedPreferences(this);
         edtEmail = findViewById(R.id.edtEmail);
         edtSenha = findViewById(R.id.edtSenha);
         btnLogar = findViewById(R.id.btnLogar);
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                                             String email = edtEmail.getText().toString().trim();
                                             String senha = edtSenha.getText().toString().trim();
+                                            String utilizador = email;
                                             boolean logado = true;
 
                                             Usuario usuario = new Usuario();
@@ -117,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                                                     try {
                                                         usuarioRepositorio.open();
                                                         usuarioRepositorio.updateLogado(usuario);
+                                                        configSharedPreferences.guardarPreferencia(true, utilizador);
                                                         Bundle b = new Bundle();
                                                         b.putString("nome", email);
                                                         Intent imd = new Intent(getApplicationContext(), MenuPrincipal.class);

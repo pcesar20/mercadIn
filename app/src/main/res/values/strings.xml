@@ -36,4 +36,8 @@
     <string name="higiene_pessoal">Higiene pessoal</string>
     <string name="categoria">Categoria</string>
     <string name="quantidade">Quantidade</string>
+    <string name="loginlogado">logado</string>
+    <string name="loginutilizador">utilizador</string>
+    <string name="preferencia_login">preferencia_login</string>
+
 </resources>

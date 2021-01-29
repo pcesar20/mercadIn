@@ -1,5 +1,6 @@
 package br.com.pauloc.mercadin;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -7,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +18,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.card.MaterialCardView;
 
+import br.com.pauloc.mercadin.common.ConfigSharedPreferences;
+
 public class MenuPrincipal extends AppCompatActivity {
+    private ConfigSharedPreferences configSharedPreferences;
     private String email = "";
     MaterialCardView btnProduto,btnCompras, btnResumoVendas, btnFerramentas, btnCategorias, btnClientes;
     TextView textBemVindo;
@@ -31,6 +36,11 @@ public class MenuPrincipal extends AppCompatActivity {
         btnProduto = findViewById(R.id.btnProduto);
         btnCompras  = findViewById(R.id.btnCompras);
         btnClientes = findViewById(R.id.btnClientes);
+        configSharedPreferences = new ConfigSharedPreferences(this);
+
+        String usuario = configSharedPreferences.obterPreferencia();
+        textBemVindo.setText("Bem vindo, " + usuario + "!");
+
 
         Intent it = getIntent();
 
@@ -87,12 +97,15 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //verificarConexao(this);
+        String usuario = configSharedPreferences.obterPreferencia();
+        textBemVindo.setText("Bem vindo, " + usuario + "!");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
+        String usuario = configSharedPreferences.obterPreferencia();
+        textBemVindo.setText("Bem vindo, " + usuario + "!");
        // verificarConexao(this);
     }
 
@@ -101,10 +114,28 @@ public class MenuPrincipal extends AppCompatActivity {
 
     }
 
+    private void sair(){
+        configSharedPreferences.guardarPreferencia(false, "");
+        Intent imd = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(imd);
+        finish();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_item, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.optSair:
+                sair();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
