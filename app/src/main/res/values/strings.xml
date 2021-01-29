@@ -34,4 +34,6 @@
     <string name="bebidas">Bebidas</string>
     <string name="papelaria">Papelaria</string>
     <string name="higiene_pessoal">Higiene pessoal</string>
+    <string name="categoria">Categoria</string>
+    <string name="quantidade">Quantidade</string>
 </resources>

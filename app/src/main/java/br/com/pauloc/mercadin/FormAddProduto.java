@@ -29,13 +29,17 @@ import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;
 import static java.security.AccessController.getContext;
 
 public class FormAddProduto extends AppCompatActivity {
-    EditText edtDescricao, edtQtd;
+    EditText edtDescricao, edtQtd, edtMarcaProduto, edtValorProduto, edtValidade;
     AutoCompleteTextView filled_exposed_dropdown;
     Button btnEnviar;
 
     public static String EXTRA_DESCRICAO = "extra_descricao";
     public static String EXTRA_QUANTIDADE = "extra_quantidade";
-    private boolean isEdit = false;
+    public static String EXTRA_VALOR = "extra_valor";
+    public static String EXTRA_MARCA = "extra_marca";
+    public static String EXTRA_CATEGORIA = "extra_categoria";
+    public static String EXTRA_VALIDADE = "extra_validade";
+    public boolean isEdit = false;
     public static int REQUEST_ADD = 100;
     public static int RESULT_ADD = 101;
     public static int REQUEST_UPDATE = 200;
@@ -52,6 +56,9 @@ public class FormAddProduto extends AppCompatActivity {
         filled_exposed_dropdown = findViewById(R.id.filled_exposed_dropdown);
         edtDescricao = findViewById(R.id.edt_descricao);
         edtQtd = findViewById(R.id.edt_qntProduto);
+        edtMarcaProduto = findViewById(R.id.edt_marcaProduto);
+        edtValorProduto = findViewById(R.id.edt_valorProduto);
+        edtValidade = findViewById(R.id.edt_validade);
         btnEnviar = findViewById(R.id.btn_enviar);
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +66,10 @@ public class FormAddProduto extends AppCompatActivity {
                 if (v.getId() == R.id.btn_enviar) {
                     String descricao = edtDescricao.getText().toString().trim();
                     int qntItem = Integer.parseInt(edtQtd.getText().toString().trim());
+                    String marca = edtMarcaProduto.getText().toString().trim();
+                    String categoria = filled_exposed_dropdown.getText().toString().trim();
+                    String validade = edtValidade.getText().toString().trim();
+                    String valor = edtValorProduto.getText().toString().trim();
                     String qnt = String.valueOf(qntItem);
 
                     boolean isEmpty = false;
@@ -74,6 +85,11 @@ public class FormAddProduto extends AppCompatActivity {
 
                         novoProduto.setDescricao(descricao);
                         novoProduto.setQntItens(qntItem);
+                        novoProduto.setValor(valor);
+                        novoProduto.setMarca(marca);
+                        novoProduto.setCategoria(categoria);
+                        novoProduto.setValidade(validade);
+
 
                         Intent intent = new Intent();
 

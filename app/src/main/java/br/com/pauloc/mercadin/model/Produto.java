@@ -4,17 +4,22 @@ import java.io.Serializable;
 
 public class Produto implements Serializable {
     public long id;
+
     public String descricao;
     public String validade;
-    public Double valor;
+    public String valor;
     public int qntItens;
+    public String marca;
+    public String categoria;
 
-    public Produto(long id, String descricao, String validade, Double valor, int qntItens) {
+    public Produto(long id, String descricao, String validade, String valor, int qntItens, String marca, String categoria) {
         this.id = id;
         this.descricao = descricao;
         this.validade = validade;
         this.valor = valor;
         this.qntItens = qntItens;
+        this.marca = marca;
+        this.categoria = categoria;
     }
 
     public Produto() {
@@ -46,11 +51,11 @@ public class Produto implements Serializable {
         this.validade = validade;
     }
 
-    public Double getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 
@@ -60,6 +65,22 @@ public class Produto implements Serializable {
 
     public void setQntItens(int qntItens) {
         this.qntItens = qntItens;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     @Override

@@ -36,8 +36,40 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:textSize="14sp"
-                android:text="Quantidade"
+                android:text="@string/quantidade"
                 android:id="@+id/tv_item_qntd"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:text="Valor R$"
+                android:id="@+id/tv_item_valor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:text="@string/categoria"
+                android:id="@+id/tv_item_categoria"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:text="Marca"
+                android:id="@+id/tv_item_marca"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:text="Validade"
+                android:id="@+id/tv_item_validade"/>
 
         </LinearLayout>
 

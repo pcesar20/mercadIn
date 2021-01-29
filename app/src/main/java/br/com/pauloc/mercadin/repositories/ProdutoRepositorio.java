@@ -14,6 +14,8 @@ import br.com.pauloc.mercadin.model.Produto;
 
 import static android.provider.BaseColumns._ID;
 import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_DESCRICAO;
+import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_PRODUTO_CATEGORIA;
+import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_PRODUTO_MARCA;
 import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_QNT;
 import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_VALIDADE;
 import static br.com.pauloc.mercadin.DB.DataBaseSQLHelper.COLUNA_VALOR;
@@ -43,6 +45,8 @@ public class ProdutoRepositorio {
         cv.put(COLUNA_VALOR, produto.valor);
         cv.put(COLUNA_VALIDADE, produto.validade);
         cv.put(COLUNA_QNT, produto.qntItens);
+        cv.put(COLUNA_PRODUTO_MARCA, produto.marca);
+        cv.put(COLUNA_PRODUTO_CATEGORIA, produto.categoria);
         long id = db.insert(TABELA_PRODUTO, null, cv);
         if (id != -1) {
             produto.id = id;
@@ -63,6 +67,8 @@ public class ProdutoRepositorio {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUNA_DESCRICAO, produto.getDescricao());
         contentValues.put(COLUNA_QNT, produto.getQntItens());
+        contentValues.put(COLUNA_PRODUTO_MARCA, produto.getMarca());
+        contentValues.put(COLUNA_PRODUTO_CATEGORIA, produto.getCategoria());
         contentValues.put(COLUNA_VALIDADE, produto.getValidade());
         contentValues.put(COLUNA_VALOR, produto.getValor());
 
@@ -113,6 +119,10 @@ public class ProdutoRepositorio {
                 produto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members._ID)));
                 produto.setDescricao(cursor.getString(cursor.getColumnIndexOrThrow(COLUNA_DESCRICAO)));
                 produto.setQntItens(cursor.getInt(cursor.getColumnIndexOrThrow(COLUNA_QNT)));
+                produto.setMarca(cursor.getString(cursor.getColumnIndexOrThrow(COLUNA_PRODUTO_MARCA)));
+                produto.setCategoria(cursor.getString(cursor.getColumnIndexOrThrow(COLUNA_PRODUTO_CATEGORIA)));
+                produto.setValor(cursor.getString(cursor.getColumnIndexOrThrow(COLUNA_VALOR)));
+                produto.setValidade(cursor.getString(cursor.getColumnIndexOrThrow(COLUNA_VALIDADE)));
 
                 arrayList.add(produto);
 

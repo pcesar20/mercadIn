@@ -50,8 +50,12 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
     @Override
     public void onBindViewHolder(@NonNull ProdutoViewHolder holder, final int position) {
-        holder.txtDescricaoProduto.setText(getListaProduto().get(position).getDescricao());
-        holder.txtQnt.setText(Integer.toString(getListaProduto().get(position).getQntItens()));
+        holder.txtDescricaoProduto.setText("Produto: " + getListaProduto().get(position).getDescricao());
+        holder.txtQnt.setText("Qnt: " + Integer.toString(getListaProduto().get(position).getQntItens()));
+        holder.txtMarca.setText("Marca: " + getListaProduto().get(position).getMarca());
+        holder.txtCategoria.setText("Categoria: " + getListaProduto().get(position).getCategoria());
+        holder.txtValidade.setText("Validade: " + getListaProduto().get(position).getValidade());
+        holder.txtValor.setText("Valor: " + getListaProduto().get(position).getValor());
 //        holder.cvProduto.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback(){
 //            @Override
 //            public void onItemClicked(View view, int posicao) {
@@ -67,13 +71,17 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     }
 
     public class ProdutoViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
-        TextView txtDescricaoProduto, txtQnt;
+        TextView txtDescricaoProduto, txtQnt, txtMarca, txtValor, txtCategoria, txtValidade;
         CardView cvProduto;
 
         public ProdutoViewHolder(View itemView){
             super(itemView);
             txtDescricaoProduto = itemView.findViewById(R.id.tv_item_produto);
             txtQnt = itemView.findViewById(R.id.tv_item_qntd);
+            txtMarca = itemView.findViewById(R.id.tv_item_marca);
+            txtCategoria = itemView.findViewById(R.id.tv_item_categoria);
+            txtValor = itemView.findViewById(R.id.tv_item_valor);
+            txtValidade =itemView.findViewById(R.id.tv_item_validade);
             cvProduto = itemView.findViewById(R.id.cv_item_produto);
             cvProduto.setOnCreateContextMenuListener(this);
 
