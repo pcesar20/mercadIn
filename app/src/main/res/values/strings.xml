@@ -5,7 +5,7 @@
     <string name="e_mail">E-mail</string>
     <string name="logar">Logar</string>
     <string name="voltar">Voltar</string>
-    <string name="frase">Criar uma conta com seu e-mail ou logue com sua rede social favorita :)</string>
+    <string name="frase">Criar uma conta ou logue com sua rede social favorita :)</string>
     <string name="favorita">Criar um nova conta com:</string>
     <string name="criar">Criar</string>
     <string name="limpar">Limpar</string>
@@ -39,5 +39,6 @@
     <string name="loginlogado">logado</string>
     <string name="loginutilizador">utilizador</string>
     <string name="preferencia_login">preferencia_login</string>
+    <string name="user">Usuário</string>
 
 </resources>
