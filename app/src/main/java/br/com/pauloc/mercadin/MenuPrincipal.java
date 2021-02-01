@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.snackbar.Snackbar;
 
 import br.com.pauloc.mercadin.common.ConfigSharedPreferences;
 
@@ -36,6 +38,9 @@ public class MenuPrincipal extends AppCompatActivity {
         btnProduto = findViewById(R.id.btnProduto);
         btnCompras  = findViewById(R.id.btnCompras);
         btnClientes = findViewById(R.id.btnClientes);
+        btnResumoVendas = findViewById(R.id.btnResumoVendas);
+        btnFerramentas = findViewById(R.id.btnFerramentas);
+        btnCategorias = findViewById(R.id.btnCategorias);
         configSharedPreferences = new ConfigSharedPreferences(this);
 
         String usuario = configSharedPreferences.obterPreferencia();
@@ -52,6 +57,27 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         }
         bemVindo(email);
+
+        btnResumoVendas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emDev(v);
+            }
+        });
+
+        btnFerramentas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emDev(v);
+            }
+        });
+
+        btnCategorias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emDev(v);
+            }
+        });
 
         btnCompras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,11 +140,22 @@ public class MenuPrincipal extends AppCompatActivity {
 
     }
 
+    private void emDev(View v){
+        Snackbar.make(v, "Em desenvolvimento", Snackbar.LENGTH_LONG).setAction("MercadIn", null).show();
+    }
+
     private void sair(){
         configSharedPreferences.guardarPreferencia(false, "");
         Intent imd = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(imd);
         finish();
+    }
+
+    private void linksDuvidas(){
+         String url = "https://linktr.ee/pcesar20";
+         Uri uri = Uri.parse(url);
+         Intent i = new Intent(Intent.ACTION_VIEW, uri);
+         startActivity(i);
     }
 
     @Override
@@ -134,6 +171,8 @@ public class MenuPrincipal extends AppCompatActivity {
             case R.id.optSair:
                 sair();
                 return true;
+            case R.id.optDuvidas:
+                linksDuvidas();
             default:
                 return super.onOptionsItemSelected(item);
         }
