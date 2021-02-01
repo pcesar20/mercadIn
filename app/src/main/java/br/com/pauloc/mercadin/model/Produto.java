@@ -11,8 +11,10 @@ public class Produto implements Serializable {
     public int qntItens;
     public String marca;
     public String categoria;
+    public int status;
 
-    public Produto(long id, String descricao, String validade, String valor, int qntItens, String marca, String categoria) {
+
+    public Produto(long id, String descricao, String validade, String valor, int qntItens, String marca, String categoria, int status) {
         this.id = id;
         this.descricao = descricao;
         this.validade = validade;
@@ -20,6 +22,7 @@ public class Produto implements Serializable {
         this.qntItens = qntItens;
         this.marca = marca;
         this.categoria = categoria;
+        this.status = status;
     }
 
     public Produto() {
@@ -81,6 +84,14 @@ public class Produto implements Serializable {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override

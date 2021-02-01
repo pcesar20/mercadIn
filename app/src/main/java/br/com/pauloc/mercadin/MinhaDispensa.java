@@ -73,7 +73,7 @@ public class MinhaDispensa extends AppCompatActivity {
             }
         }
 
-        bemVindo(email);
+        //bemVindo(email);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +200,7 @@ public class MinhaDispensa extends AppCompatActivity {
                 if(position != null){
                     produtoRepositorio.open();
                     lista.remove(position);
-                    produtoRepositorio.delete(position);
+                    produtoRepositorio.delete((int) lista.get(position).getId());
                     adapter.removeItem(position);
                     adapter.notifyItemRemoved(position);
                     showSnackbarMessage("Produto Eliminado");

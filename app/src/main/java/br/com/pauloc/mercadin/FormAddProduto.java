@@ -89,6 +89,7 @@ public class FormAddProduto extends AppCompatActivity {
                         novoProduto.setMarca(marca);
                         novoProduto.setCategoria(categoria);
                         novoProduto.setValidade(validade);
+                        novoProduto.setStatus(0);
 
 
                         Intent intent = new Intent();

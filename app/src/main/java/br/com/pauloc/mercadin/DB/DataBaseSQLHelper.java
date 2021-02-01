@@ -10,7 +10,7 @@ import static android.provider.MediaStore.Audio.Playlists.Members._ID;
 
 public class DataBaseSQLHelper extends SQLiteOpenHelper {
     public static final String NOME_BASEDADOS = "dbMercadin";
-    public static final int VERSAO_BANCODEDADOS = 10;
+    public static final int VERSAO_BANCODEDADOS = 11;
     //TABELA PRODUTO
     public static final String TABELA_PRODUTO = "produto";
     public static final String COLUNA_ID = "_id";
@@ -19,6 +19,7 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
     public static final String COLUNA_VALOR = "valor";
     public static final String COLUNA_VALIDADE = "validade";
     public static final String COLUNA_QNT = "qntItens";
+    public static final String COLUNA_PRODUTO_STATUS = "status";
     public static final String COLUNA_PRODUTO_CATEGORIA = "categoria";
     //TABELA USUARIO
     public static final String TABELA_USUARIO = "usuario";
@@ -73,6 +74,7 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
                         COLUNA_DESCRICAO + " TEXT NOT NULL, " +
                         COLUNA_PRODUTO_MARCA + " TEXT, " +
                         COLUNA_VALOR + " REAL, " +
+                        COLUNA_PRODUTO_STATUS + " INTEGER, " +
                         COLUNA_VALIDADE + " TEXT, " +
                         COLUNA_PRODUTO_CATEGORIA + " TEXT NOT NULL, " +
                         COLUNA_QNT + " INT)"
@@ -178,6 +180,11 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
             return true;
         else
             return false;
+    }
+
+    public void deleteProduto(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABELA_PRODUTO, COLUNA_ID + " = ?",new String[] {String.valueOf(id)});
     }
 
 
