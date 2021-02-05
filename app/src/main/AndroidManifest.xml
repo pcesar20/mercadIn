@@ -17,9 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuPrincipal"
-            android:theme="@style/MaterialTheme2">
-        </activity>
+        <activity android:name=".ComprasActivity"
+            android:theme="@style/MaterialTheme2"></activity>
+        <activity
+            android:name=".MenuPrincipal"
+            android:theme="@style/MaterialTheme2"></activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -34,7 +36,7 @@
             android:theme="@style/MaterialTheme" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MinhaDispensa"
             android:label="@string/title_activity_minha_dispensa"

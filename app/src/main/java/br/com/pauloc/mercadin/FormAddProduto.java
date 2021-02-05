@@ -60,6 +60,23 @@ public class FormAddProduto extends AppCompatActivity {
         edtValorProduto = findViewById(R.id.edt_valorProduto);
         edtValidade = findViewById(R.id.edt_validade);
         btnEnviar = findViewById(R.id.btn_enviar);
+
+
+        Intent in = getIntent();
+        String descricao = "";
+
+        if (in != null) {
+            Bundle b = in.getExtras();
+
+            if (b != null) {
+              descricao = b.getString("EXTRA_DESCRICAO", "");
+            }
+        }
+
+        edtDescricao.setText(descricao);
+
+
+
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

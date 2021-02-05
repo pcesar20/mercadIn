@@ -8,6 +8,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -15,7 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -80,9 +83,9 @@ public class MinhaDispensa extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (view.getId() == R.id.fab_add) {
-                    Intent intent = new Intent(MinhaDispensa.this, FormAddProduto.class);
+                    Intent intent = new Intent(getApplicationContext(), ComprasActivity.class);
                     try {
-                        startActivityForResult(intent, FormAddProduto.REQUEST_ADD);
+                        startActivity(intent);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -236,4 +239,6 @@ public class MinhaDispensa extends AppCompatActivity {
         }
 
     }
+
+
 }

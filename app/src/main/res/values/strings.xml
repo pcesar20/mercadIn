@@ -40,5 +40,6 @@
     <string name="loginutilizador">utilizador</string>
     <string name="preferencia_login">preferencia_login</string>
     <string name="user">Usuário</string>
+    <string name="add">Adicionar</string>
 
 </resources>

@@ -1,8 +1,11 @@
 package br.com.pauloc.mercadin.adapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,24 +52,56 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProdutoViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ProdutoViewHolder holder, final int position) {
         holder.txtDescricaoProduto.setText("Produto: " + getListaProduto().get(position).getDescricao());
         holder.txtQnt.setText("Qnt: " + Integer.toString(getListaProduto().get(position).getQntItens()));
         holder.txtMarca.setText("Marca: " + getListaProduto().get(position).getMarca());
         holder.txtCategoria.setText("Categoria: " + getListaProduto().get(position).getCategoria());
         holder.txtValidade.setText("Validade: " + getListaProduto().get(position).getValidade());
         holder.txtValor.setText("Valor: " + getListaProduto().get(position).getValor());
-//        holder.cvProduto.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback(){
-//            @Override
-//            public void onItemClicked(View view, int posicao) {
-//                Intent intent = new Intent(activity, FormAddProduto.class);
-//                intent.putExtra(FormAddProduto.EXTRA_QUANTIDADE, posicao);
-//                intent.putExtra(FormAddProduto.EXTRA_DESCRICAO, getListaProduto().get(posicao));
-//                activity.startActivityForResult(intent, FormAddProduto.REQUEST_UPDATE);
-//            }
-//
-//
-//        }));
+        holder.cvProduto.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback(){
+            @Override
+            public void onItemClicked(final View view, final int posicao) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
+                builder.setTitle("MercadIn");
+                builder.setMessage("Escolha uma ação:");
+
+                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(activity, FormAddProduto.class);
+                                        intent.putExtra(FormAddProduto.EXTRA_QUANTIDADE, getListaProduto().get(position).getQntItens());
+                                        intent.putExtra(FormAddProduto.EXTRA_DESCRICAO, getListaProduto().get(position).getDescricao());
+                                        intent.putExtra(FormAddProduto.EXTRA_MARCA, getListaProduto().get(position).getMarca());
+                                        intent.putExtra(FormAddProduto.EXTRA_CATEGORIA, getListaProduto().get(position).getCategoria());
+                                        intent.putExtra(FormAddProduto.EXTRA_VALOR, getListaProduto().get(position).getValor());
+                                        intent.putExtra(FormAddProduto.EXTRA_VALIDADE, getListaProduto().get(position).getValidade());
+                                        activity.startActivityForResult(intent, FormAddProduto.REQUEST_UPDATE);
+                    }
+                });
+
+                builder.setNegativeButton("Excluir", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ProdutoRepositorio produtoRepositorio = new ProdutoRepositorio(view.getContext());
+                        produtoRepositorio.open();
+                        produtoRepositorio.delete((int) getListaProduto().get(posicao).getId());
+                    }
+                });
+
+                builder.create().show();
+            }
+
+
+        }));
 
     }
 
