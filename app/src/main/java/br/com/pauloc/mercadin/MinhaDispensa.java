@@ -131,6 +131,7 @@ public class MinhaDispensa extends AppCompatActivity {
             adapter.setListaProduto(lista);
             adapter.notifyDataSetChanged();
 
+
             if (lista.size() == 0) {
                 showSnackbarMessage("Não há produtos");
             }
@@ -202,13 +203,12 @@ public class MinhaDispensa extends AppCompatActivity {
 
                 if(position != null){
                     produtoRepositorio.open();
-                    lista.remove(position);
                     produtoRepositorio.delete((int) lista.get(position).getId());
                     adapter.removeItem(position);
                     adapter.notifyItemRemoved(position);
-                    showSnackbarMessage("Produto Eliminado");
+                    showSnackbarMessage(getString(R.string.car_msg));
                 } else{
-                    showSnackbarMessage("Algo de errado");
+                    showSnackbarMessage(getString(R.string.erro));
                 }
 
 

@@ -9,5 +9,8 @@
         <item name="bebidas">Bebidas</item>
         <item name="papelaria">Papelaria</item>
         <item name="higiene_pessoal">Higiene pessoal</item>
+        <item name="outros">Outros</item>
+        <item name="chocolat">Chocolate</item>
+        <item name="diversos">Diversos</item>
     </string-array>
 </resources>

@@ -10,7 +10,7 @@ import static android.provider.MediaStore.Audio.Playlists.Members._ID;
 
 public class DataBaseSQLHelper extends SQLiteOpenHelper {
     public static final String NOME_BASEDADOS = "dbMercadin";
-    public static final int VERSAO_BANCODEDADOS = 11;
+    public static final int VERSAO_BANCODEDADOS = 12;
     //TABELA PRODUTO
     public static final String TABELA_PRODUTO = "produto";
     public static final String COLUNA_ID = "_id";
@@ -60,6 +60,7 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(
                 "CREATE TABLE " + TABELA_USUARIO + " (" +
                         COLUNA_USUR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -118,6 +119,8 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
                         COLUNA_PROD_VAL + " REAL NOT NULL," +
                         "FOREIGN KEY ("+COLUNA_PROD_ID+") REFERENCES "+TABELA_PRODUTO+"("+COLUNA_ID+"))"
         );
+
+        db.execSQL(sqlInsert);
 
     }
 
@@ -188,7 +191,9 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
     }
 
 
-
+    private String sqlInsert = "insert into produto (_id, descricao, marca, valor, status, validade, categoria, qntItens) " +
+            "values (null, \"teste\", null, null, null, null, \"Outros\", null)," +
+            "(null, \"teste2\", null, null, null, null, \"Outros\", null);";
 
 
 }

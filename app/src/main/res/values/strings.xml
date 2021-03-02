@@ -41,5 +41,7 @@
     <string name="preferencia_login">preferencia_login</string>
     <string name="user">Usuário</string>
     <string name="add">Adicionar</string>
+    <string name="car_msg">Produto adicionado ao carrinho</string>
+    <string name="erro">Algo de errado ao incluir</string>
 
 </resources>

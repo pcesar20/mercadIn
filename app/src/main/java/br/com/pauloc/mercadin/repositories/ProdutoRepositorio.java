@@ -100,7 +100,7 @@ public class ProdutoRepositorio {
         ArrayList<Produto> arrayList = new ArrayList<Produto>();
 
         Cursor cursor = database.rawQuery(
-                "select * from produto where status =?",
+                "select * from produto where status =? ORDER BY descricao asc",
                 new String[] {"0"});
 
 //        Cursor cursor = database.query(
