@@ -43,5 +43,6 @@
     <string name="add">Adicionar</string>
     <string name="car_msg">Produto adicionado ao carrinho</string>
     <string name="erro">Algo de errado ao incluir</string>
+    <string name="prod_delete">Produto eliminado</string>
 
 </resources>

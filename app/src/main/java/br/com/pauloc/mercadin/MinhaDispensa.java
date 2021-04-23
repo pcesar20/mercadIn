@@ -30,7 +30,8 @@ import br.com.pauloc.mercadin.adapters.ProdutoAdapter;
 import br.com.pauloc.mercadin.model.Produto;
 import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;
 
-public class MinhaDispensa extends AppCompatActivity {
+public class
+MinhaDispensa extends AppCompatActivity {
 
     private String email = "";
     RecyclerView rvProd;
@@ -96,6 +97,22 @@ public class MinhaDispensa extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_IMMERSIVE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            // Esconde nav bar e status bar
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+            );
+        }
     }
 
     private class LoadProdutoAsync extends AsyncTask<Void, Void, ArrayList<Produto>> {
@@ -206,7 +223,7 @@ public class MinhaDispensa extends AppCompatActivity {
                     produtoRepositorio.delete((int) lista.get(position).getId());
                     adapter.removeItem(position);
                     adapter.notifyItemRemoved(position);
-                    showSnackbarMessage(getString(R.string.car_msg));
+                    showSnackbarMessage(getString(R.string.prod_delete));
                 } else{
                     showSnackbarMessage(getString(R.string.erro));
                 }
