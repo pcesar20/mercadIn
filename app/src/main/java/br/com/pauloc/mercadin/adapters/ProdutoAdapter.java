@@ -77,14 +77,14 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
                 builder.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(activity, FormAddProduto.class);
-                                        intent.putExtra(FormAddProduto.EXTRA_QUANTIDADE, getListaProduto().get(position).getQntItens());
-                                        intent.putExtra(FormAddProduto.EXTRA_DESCRICAO, getListaProduto().get(position).getDescricao());
-                                        intent.putExtra(FormAddProduto.EXTRA_MARCA, getListaProduto().get(position).getMarca());
-                                        intent.putExtra(FormAddProduto.EXTRA_CATEGORIA, getListaProduto().get(position).getCategoria());
-                                        intent.putExtra(FormAddProduto.EXTRA_VALOR, getListaProduto().get(position).getValor());
-                                        intent.putExtra(FormAddProduto.EXTRA_VALIDADE, getListaProduto().get(position).getValidade());
-                                        activity.startActivityForResult(intent, FormAddProduto.REQUEST_UPDATE);
+                        Intent intent = new Intent(activity, FormAddProduto.class);
+                        intent.putExtra(FormAddProduto.EXTRA_QUANTIDADE, getListaProduto().get(position).getQntItens());
+                        intent.putExtra(FormAddProduto.EXTRA_DESCRICAO, getListaProduto().get(position).getDescricao());
+                        intent.putExtra(FormAddProduto.EXTRA_MARCA, getListaProduto().get(position).getMarca());
+                        intent.putExtra(FormAddProduto.EXTRA_CATEGORIA, getListaProduto().get(position).getCategoria());
+                        intent.putExtra(FormAddProduto.EXTRA_VALOR, getListaProduto().get(position).getValor());
+                        intent.putExtra(FormAddProduto.EXTRA_VALIDADE, getListaProduto().get(position).getValidade());
+                        activity.startActivityForResult(intent, FormAddProduto.REQUEST_UPDATE);
                     }
                 });
 
@@ -121,7 +121,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             cvProduto.setOnCreateContextMenuListener(this);
 
         }
-        
+
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
             menu.setHeaderTitle("Selecione uma opção");

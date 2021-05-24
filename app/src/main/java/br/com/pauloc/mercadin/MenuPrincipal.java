@@ -21,6 +21,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.snackbar.Snackbar;
 
 import br.com.pauloc.mercadin.common.ConfigSharedPreferences;
+import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;
 
 public class MenuPrincipal extends AppCompatActivity {
     private ConfigSharedPreferences configSharedPreferences;
@@ -28,6 +29,7 @@ public class MenuPrincipal extends AppCompatActivity {
     MaterialCardView btnProduto,btnCompras, btnResumoVendas, btnFerramentas, btnCategorias, btnClientes;
     TextView textBemVindo;
     ImageView imgInternetConection;
+    private ProdutoRepositorio produtoRepositorio;
 
 
     @Override
@@ -42,6 +44,8 @@ public class MenuPrincipal extends AppCompatActivity {
         btnFerramentas = findViewById(R.id.btnFerramentas);
         btnCategorias = findViewById(R.id.btnCategorias);
         configSharedPreferences = new ConfigSharedPreferences(this);
+        produtoRepositorio = new ProdutoRepositorio(this);
+        produtoRepositorio.open();
 
         String usuario = configSharedPreferences.obterPreferencia();
         textBemVindo.setText("Bem vindo, " + usuario + "!");
@@ -127,21 +131,21 @@ public class MenuPrincipal extends AppCompatActivity {
         textBemVindo.setText("Bem vindo, " + usuario + "!");
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_IMMERSIVE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            // Esconde nav bar e status bar
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-            );
-        }
-    }
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        if (hasFocus) {
+//            getWindow().getDecorView().setSystemUiVisibility(
+//                    View.SYSTEM_UI_FLAG_IMMERSIVE
+//                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                            // Esconde nav bar e status bar
+//                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+//            );
+//        }
+//    }
 
     @Override
     protected void onRestart() {
@@ -167,6 +171,14 @@ public class MenuPrincipal extends AppCompatActivity {
         finish();
     }
 
+    private void retornarProd(){
+        produtoRepositorio.open();
+        produtoRepositorio.updateStatusAll();
+        produtoRepositorio.close();
+
+        Toast.makeText(this, "Produtos retornados :)", Toast.LENGTH_SHORT).show();
+    }
+
     private void linksDuvidas(){
          String url = "https://linktr.ee/pcesar20";
          Uri uri = Uri.parse(url);
@@ -184,6 +196,9 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
+            case R.id.optReturn:
+                retornarProd();
+                return true;
             case R.id.optSair:
                 sair();
                 return true;

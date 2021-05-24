@@ -10,7 +10,7 @@ import static android.provider.MediaStore.Audio.Playlists.Members._ID;
 
 public class DataBaseSQLHelper extends SQLiteOpenHelper {
     public static final String NOME_BASEDADOS = "dbMercadin";
-    public static final int VERSAO_BANCODEDADOS = 12;
+    public static final int VERSAO_BANCODEDADOS = 13;
     //TABELA PRODUTO
     public static final String TABELA_PRODUTO = "produto";
     public static final String COLUNA_ID = "_id";
@@ -120,7 +120,7 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
                         "FOREIGN KEY ("+COLUNA_PROD_ID+") REFERENCES "+TABELA_PRODUTO+"("+COLUNA_ID+"))"
         );
 
-        db.execSQL(sqlInsert);
+        db.execSQL(sqlInsertProduto);
 
     }
 
@@ -191,9 +191,17 @@ public class DataBaseSQLHelper extends SQLiteOpenHelper {
     }
 
 
-    private String sqlInsert = "insert into produto (_id, descricao, marca, valor, status, validade, categoria, qntItens) " +
-            "values (null, \"teste\", null, null, null, null, \"Outros\", null)," +
-            "(null, \"teste2\", null, null, null, null, \"Outros\", null);";
+    private String sqlInsertProduto = "insert into produto (_id, descricao, marca, valor, status, validade, categoria, qntItens) " +
+            "values (null, \"Batata Cong. Grande\", \"Mais Batata\", \"16.40\", 0, null, \"Congelados e frios\", 1)," +
+            "(null, \"Pão de Queijo 800g\", \"BENI\", \"5.99\", 0,null, \"Congelados e frios\", 2)," +
+            "(null, \"Margarina S/S 500g\", \"Qualy\", \"5.99\", 0,null, \"Diversos\", 1)," +
+            "(null, \"Empanados 300G\", \"Aurora\", \"3.99\", 0,null, \"Congelados e frios\", 1)," +
+            "(null, \"Polpa de Fruta 100G\", \"Frutae\", \"4.20\", 0,null, \"Congelados e frios\", 1)," +
+            "(null, \"Cream Cracker 400G\", \"Fortaleza\", \"4.39\", 0,null, \"Alimentos\", 1)," +
+            "(null, \"Leite Condensado 395G\", \"Piracanjuba\", \"4.95\", 0,null, \"Diversos\", 2)," +
+            "(null, \"Creme de Leite 200G\", \"Italac\", \"2.79\", 0,null, \"Diversos\", 6)," +
+            "(null, \"Barra de Chocolate Crunch 90g\", \"Nestle\", \"5.49\", 0,null, \"Chocolate\", 6)";
+
 
 
 }

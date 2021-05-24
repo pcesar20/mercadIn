@@ -1,10 +1,10 @@
 "insert into produto (_id, descricao, marca, valor, status, validade, categoria, qntItens) " +
-            "values (null, \"Batata Cong. Grande\", "Mais Batata", "16.40", 0, null, \"Congelados e frios\", 1)," +
-            	   "(null, \"Pão de Queijo 800g\", "BENI", "5.99", 0,null, \"Congelados e frios\", 2)," +
-            	   "(null, \"Margarina S/S 500g\", "Qualy", "5.99", 0,null, \"Diversos\", 1)," +
-            	   "(null, \"Empanados 300G\", "Aurora", "3.99", 0,null, \"Congelados e frios\", 1)," +
-            	   "(null, \"Polpa de Fruta 100G\", "Frutae", "4.20", 0,null, \"Congelados e frios\", 1)," +
-            	   "(null, \"Cream Cracker 400G\", "Fortaleza", "4.39", 0,null, \"Alimentos\", 1)," +
-            	   "(null, \"Leite Condensado 395G\", "Piracanjuba", "4.95", 0,null, \"Diversos\", 2)," +
-            	   "(null, \"Creme de Leite 200G\", "Italac", "2.79", 0,null, \"Diversos\", 6)," +
-            	   "(null, \"Barra de Chocolate Crunch 90g\", "Nestle", "5.49", 0,null, \"Chocolate\", 6)," +
+            "values (null, \"Batata Cong. Grande\", \"Mais Batata\", "\16.40\", 0, null, \"Congelados e frios\", 1)," +
+            	   "(null, \"Pão de Queijo 800g\", \"BENI\", \"5.99\", 0,null, \"Congelados e frios\", 2)," +
+            	   "(null, \"Margarina S/S 500g\", \"Qualy\", \"5.99\", 0,null, \"Diversos\", 1)," +
+            	   "(null, \"Empanados 300G\", \"Aurora\", \"3.99\", 0,null, \"Congelados e frios\", 1)," +
+            	   "(null, \"Polpa de Fruta 100G\", \"Frutae\", \"4.20\", 0,null, \"Congelados e frios\", 1)," +
+            	   "(null, \"Cream Cracker 400G\", \"Fortaleza\", \"4.39\", 0,null, \"Alimentos\", 1)," +
+            	   "(null, \"Leite Condensado 395G\", \"Piracanjuba\", \"4.95\", 0,null, \"Diversos\", 2)," +
+            	   "(null, \"Creme de Leite 200G\", \"Italac\", \"2.79\", 0,null, \"Diversos\", 6)," +
+            	   "(null, \"Barra de Chocolate Crunch 90g\", \"Nestle\", \"5.49\", 0,null, \"Chocolate\", 6)," +

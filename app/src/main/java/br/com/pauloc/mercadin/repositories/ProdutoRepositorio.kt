@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
+import android.provider.ContactsContract
 import android.provider.MediaStore
 import br.com.pauloc.mercadin.DB.DataBaseSQLHelper
 import br.com.pauloc.mercadin.model.Produto
@@ -65,10 +66,33 @@ class ProdutoRepositorio(private val context: Context) {
         contentValues.put(DataBaseSQLHelper.COLUNA_PRODUTO_CATEGORIA, produto.categoria)
         contentValues.put(DataBaseSQLHelper.COLUNA_VALIDADE, produto.validade)
         contentValues.put(DataBaseSQLHelper.COLUNA_VALOR, produto.valor)
+        contentValues.put(DataBaseSQLHelper.COLUNA_PRODUTO_STATUS, 0)
         return database!!.update(
                 BASEDADOS_TABELA,
                 contentValues,
                 BaseColumns._ID + "= '" + produto.id + "'",
+                null
+        )
+    }
+
+    fun updateStatusAll(): Int{
+        val contentValues = ContentValues()
+        contentValues.put(DataBaseSQLHelper.COLUNA_PRODUTO_STATUS, 0);
+        return database!!.update(
+                BASEDADOS_TABELA,
+                contentValues,
+                null,
+                null
+        )
+    }
+
+    fun updateStatus2(id: Int): Int{
+        val contentValues = ContentValues()
+        contentValues.put(DataBaseSQLHelper.COLUNA_PRODUTO_STATUS, 1);
+        return database!!.update(
+                BASEDADOS_TABELA,
+                contentValues,
+                BaseColumns._ID + "= '" + id + "'",
                 null
         )
     }
