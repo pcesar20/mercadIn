@@ -1,5 +1,5 @@
 
-package br.com.pauloc.mercadin;
+package br.com.pauloc.mercadin.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.pauloc.mercadin.R;
 import br.com.pauloc.mercadin.adapters.ItemCompraAdapter;
 import br.com.pauloc.mercadin.model.ItemCompra;
 import br.com.pauloc.mercadin.model.Produto;

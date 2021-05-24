@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,15 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import br.com.pauloc.mercadin.CustomOnItemClickListener;
-import br.com.pauloc.mercadin.DB.DataBaseSQLHelper;
-import br.com.pauloc.mercadin.FormAddProduto;
-import br.com.pauloc.mercadin.MinhaDispensa;
+import br.com.pauloc.mercadin.ui.CustomOnItemClickListener;
+import br.com.pauloc.mercadin.ui.FormAddProduto;
 import br.com.pauloc.mercadin.R;
 import br.com.pauloc.mercadin.model.Produto;
 import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;
-
-import static android.provider.MediaStore.Audio.Playlists.Members._ID;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder> {
 

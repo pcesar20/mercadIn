@@ -1,4 +1,4 @@
-package br.com.pauloc.mercadin;
+package br.com.pauloc.mercadin.ui;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -8,24 +8,19 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-import br.com.pauloc.mercadin.DB.DataBaseSQLHelper;
+import br.com.pauloc.mercadin.R;
 import br.com.pauloc.mercadin.adapters.ProdutoAdapter;
 import br.com.pauloc.mercadin.model.Produto;
 import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;

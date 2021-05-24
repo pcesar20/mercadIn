@@ -1,4 +1,4 @@
-package br.com.pauloc.mercadin;
+package br.com.pauloc.mercadin.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.SQLException;
-
+import br.com.pauloc.mercadin.R;
 import br.com.pauloc.mercadin.model.Usuario;
 import br.com.pauloc.mercadin.repositories.UsuarioRepositorio;
 

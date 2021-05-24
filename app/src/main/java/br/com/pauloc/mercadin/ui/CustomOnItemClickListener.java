@@ -1,4 +1,4 @@
-package br.com.pauloc.mercadin;
+package br.com.pauloc.mercadin.ui;
 
 import android.view.View;
 

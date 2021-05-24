@@ -1,10 +1,6 @@
-package br.com.pauloc.mercadin;
+package br.com.pauloc.mercadin.ui;
 
-import android.content.ClipData;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.snackbar.Snackbar;
 
+import br.com.pauloc.mercadin.R;
 import br.com.pauloc.mercadin.common.ConfigSharedPreferences;
 import br.com.pauloc.mercadin.repositories.ProdutoRepositorio;
 
